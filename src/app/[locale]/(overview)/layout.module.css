@@ -1,0 +1,11 @@
+.root {
+  height: 100vh;
+}
+
+.container {
+  /* border: 1px solid red; */
+}
+
+.sidebarWrapper {
+  width: inherit !important;
+}

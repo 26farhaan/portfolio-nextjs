@@ -1,0 +1,42 @@
+.baseContainer {
+  max-width: rem(100%);
+
+  /* xs */
+  @media (min-width: $mantine-breakpoint-xs) {
+    max-width: rem(640px);
+  }
+
+  /* sm */
+  @media (min-width: $mantine-breakpoint-sm) {
+    max-width: rem(768px);
+  }
+
+  /* md */
+  @media (min-width: $mantine-breakpoint-md) {
+    max-width: rem(1024px);
+  }
+
+  /* lg */
+  @media (min-width: $mantine-breakpoint-lg) {
+    max-width: rem(1280px);
+  }
+
+  /* xl */
+  @media (min-width: $mantine-breakpoint-xl) {
+    max-width: rem(1536px);
+  }
+}
+
+.baseBadge {
+  text-transform: none;
+}
+
+.audyInput {
+  border-color: var(--mantine-color-audy-primary-blue-soft);
+}
+
+.audyInputVisibility {
+  min-width: fit-content;
+  padding: 0px 4px;
+  margin-right: 24px;
+}
