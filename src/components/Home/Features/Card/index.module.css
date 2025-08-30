@@ -1,0 +1,44 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid light-dark(var(--mantine-color-gray-3), rgba(255, 255, 255, 0.08));
+  color: #e6e9ef;
+  isolation: isolate;
+  height: 100%;
+}
+
+/* konten biasa */
+.content {
+  position: relative;
+  z-index: 2;
+  color: light-dark(black, white);
+  height: 100%;
+}
+
+/* overlay yang kita mask */
+.spot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  /* blur kaca hanya di area spotlight */
+  backdrop-filter: blur(14px) saturate(1.08);
+  -webkit-backdrop-filter: blur(14px) saturate(1.08);
+
+  /* default radius kecil (tak terlihat saat idle) */
+
+  /* opsional: warna halus di bawah blur agar “lampu” terasa */
+  background: radial-gradient(
+    360px 360px at var(--x) var(--y),
+    light-dark(rgb(216, 216, 216), rgb(65, 65, 65)),
+    transparent 90%
+  );
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.card:hover .spot {
+  opacity: 1;
+}

@@ -1,0 +1,44 @@
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  padding-block: var(--mantine-spacing-md);
+}
+
+.track {
+  display: flex;
+  gap: var(--mantine-spacing-md);
+  width: max-content; /* biar lebarnya sesuai konten */
+  animation: scrollLeft 30s linear infinite;
+}
+
+.trackRight {
+  display: flex;
+  gap: var(--mantine-spacing-md);
+  width: max-content; /* biar lebarnya sesuai konten */
+  animation: scrollRight 30s linear infinite;
+}
+
+.item {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Animasi jalan terus ke kiri */
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Kalau mau arah kanan, cukup bikin keyframes baru */
+@keyframes scrollRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

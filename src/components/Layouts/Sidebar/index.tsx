@@ -9,7 +9,7 @@ export default function Sidebar() {
   return (
     <Box pos="sticky" top={0} p="md" className={classes.rootSidebar}>
       <Flex align="center" direction="column">
-        <Avatar variant="filled" size={160} src="" />
+        <Avatar variant="filled" size={160} src="/images/profile-1.jpg" />
         <Text fz={24} mt={12}>
           Mohamad Farhan
         </Text>

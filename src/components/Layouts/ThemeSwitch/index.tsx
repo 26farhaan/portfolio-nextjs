@@ -2,8 +2,8 @@
 
 import { Switch, useComputedColorScheme, useMantineColorScheme } from "@mantine/core";
 
-import IconMoonStars from "@/components/icons/IconMoonStars";
-import IconSun from "@/components/icons/IconSun";
+import IconMoonStars from "@/components/Icons/IconMoonStars";
+import IconSun from "@/components/Icons/IconSun";
 
 export default function ThemeSwitch() {
   const { setColorScheme } = useMantineColorScheme();
@@ -14,7 +14,7 @@ export default function ThemeSwitch() {
       checked={!isLight}
       onClick={() => setColorScheme(isLight ? "dark" : "light")}
       size="lg"
-      color="blue.6"
+      color="gray"
       onLabel={<IconSun size={18} color={!isLight ? "yellow" : "white"} />}
       offLabel={<IconMoonStars size={18} color={!isLight ? "yellow" : "white"} />}
       thumbIcon={

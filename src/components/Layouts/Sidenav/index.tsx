@@ -1,21 +1,56 @@
-import { Flex, NavLink } from "@mantine/core";
+"use client";
 
-import IconHome from "@/components/icons/IconHome";
+import { usePathname } from "next/navigation";
+import { Flex, NavLink } from "@mantine/core";
+import { useTranslations } from "next-intl";
+
+import IconHome from "@/components/Icons/IconHome";
+import IconUser from "@/components/Icons/IconUser";
+import classes from "./index.module.css";
 
 export default function Sidenav() {
+  const t = useTranslations("Sidebar");
+
+  const menus = [
+    {
+      label: t("Home"),
+      icon: <IconHome size={20} />,
+      href: "/",
+      key: "",
+    },
+    {
+      label: t("About"),
+      icon: <IconUser size={20} />,
+      href: "/about",
+      key: "about",
+    },
+  ];
+
+  const pathname = usePathname();
+  const activeLink = pathname.split("/")[2] || "";
   return (
-    <Flex direction="column">
-      <NavLink href="/about" label="Home" leftSection={<IconHome size={20} />} />
-      <NavLink href="#required-for-focus" label="About" leftSection={<IconHome size={20} />} />
-      <NavLink href="#required-for-focus" label="Achivements" leftSection={<IconHome size={20} />} />
-      <NavLink href="#required-for-focus" label="Projects" leftSection={<IconHome size={20} />} />
-      <NavLink href="#required-for-focus" label="Dashboard" leftSection={<IconHome size={20} />} />
-      <NavLink href="#required-for-focus" label="Feature" leftSection={<IconHome size={20} />} />
-      <NavLink label="Nested parent link" childrenOffset={28} href="#required-for-focus">
+    <Flex direction="column" gap="xs">
+      {menus.map((menu) => {
+        return (
+          <NavLink
+            className={`${classes.link} ${activeLink === menu.key ? classes.activeLink : ""}`}
+            key={menu.label}
+            href={menu.href}
+            label={menu.label}
+            leftSection={menu.icon}
+          />
+        );
+      })}
+      {/* <NavLink
+        label="Nested parent link"
+        childrenOffset={28}
+        href="#required-for-focus"
+        leftSection={<IconHome size={20} />}
+      >
         <NavLink label="First child link" href="#required-for-focus" />
         <NavLink label="Second child link" href="#required-for-focus" />
         <NavLink label="Third child link" href="#required-for-focus" />
-      </NavLink>
+      </NavLink> */}
     </Flex>
   );
 }
