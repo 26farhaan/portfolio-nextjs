@@ -4,7 +4,18 @@
 
 // Since QueryClientProvider relies on useContext under the hood, we have to put 'use client' on top
 import { ReactNode } from "react";
+import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { mantinetheme, resolver } from "../../mantine.theme";
+import MantineProgressHandler from "./[locale]/MantineProgressHandler";
+// CSS Mantine dan style lain idealnya diimport SEKALI di root
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import "@mantine/nprogress/styles.css";
+import "@mantine/carousel/styles.css";
+import "@/styles/font.css";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -40,5 +51,13 @@ export default function Providers({ children }: { children: ReactNode }) {
   //       render if it suspends and there is no boundary
   const queryClient = getQueryClient();
 
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  return (
+    <MantineProvider defaultColorScheme="auto" theme={mantinetheme} cssVariablesResolver={resolver}>
+      <QueryClientProvider client={queryClient}>
+        <Notifications />
+        <MantineProgressHandler />
+        {children}
+      </QueryClientProvider>
+    </MantineProvider>
+  );
 }

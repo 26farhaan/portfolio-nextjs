@@ -39,10 +39,25 @@ const en = {
       },
     },
   },
+  About: {
+    title: "About Me",
+    description: "Learn more about my background, experience, and interests.",
+    career: {
+      title: "Career",
+      description: "My professional journey.",
+      responsibilities: "Show responsibilities",
+    },
+    education: {
+      title: "Education",
+      description: "My educational background.",
+    },
+  },
   Sidebar: {
     Home: "Home",
     About: "About",
   },
+  years: "Years",
+  months: "Months",
 };
 
 export type DefaultLangType = typeof en;

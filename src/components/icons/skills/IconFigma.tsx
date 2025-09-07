@@ -1,14 +1,13 @@
 import { SVGProps } from "react";
 
-type IconAIProps = {
+type IconFigmaProps = {
   size?: number;
 } & SVGProps<SVGSVGElement>;
 
-const IconAI = (props: IconAIProps) => {
+const IconFigma = (props: IconFigmaProps) => {
   const { width = props.size || 24, height = props.size || 24, ...rest } = props;
   return (
     <svg
-      {...rest}
       xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
@@ -18,11 +17,14 @@ const IconAI = (props: IconAIProps) => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      {...rest}
     >
-      <path d="M0 0h24v24H0z" stroke="currentColor" />
-      <path d="M8 16v-6a2 2 0 1 1 4 0v6m-4-3h4m4-5v8" />
+      <path d="M0 0h24v24H0z" stroke="none" />
+      <path d="M12 12a3 3 0 1 0 6 0 3 3 0 1 0-6 0" />
+      <path d="M6 6a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3" />
+      <path d="M9 9a3 3 0 0 0 0 6h3m-3 0a3 3 0 1 0 3 3V3" />
     </svg>
   );
 };
 
-export default IconAI;
+export default IconFigma;

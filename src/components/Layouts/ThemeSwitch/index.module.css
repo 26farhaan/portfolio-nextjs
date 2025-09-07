@@ -1,0 +1,45 @@
+.wrapper {
+  width: 56px;
+  height: 28px;
+  background-color: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-6));
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  border: none;
+  align-items: center;
+  position: relative;
+  padding: 12px 4px;
+  justify-content: flex-end;
+}
+
+.onLight {
+  justify-content: flex-start;
+}
+
+.placeholderLeft {
+  position: absolute;
+  left: 6px;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+}
+
+.placeholderRight {
+  position: absolute;
+  right: 6px;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+}
+
+.handle {
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}

@@ -1,4 +1,4 @@
 .body {
-  /* background-color: red; */
+  background-color: light-dark(white, black);
   height: 100%;
 }

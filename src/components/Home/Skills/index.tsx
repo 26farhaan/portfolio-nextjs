@@ -20,7 +20,7 @@ export default function Skills() {
       </Text>
       <Grid mt="xl">
         {SKILLS.map((skill, i) => (
-          <GridCol span={{ base: 3, md: 1 }} key={i}>
+          <GridCol span={{ base: 3, md: 1.2 }} key={i}>
             <SkillsIcon label={skill.label} icon={skill.icon({ size: 32 })} color={skill.color} key={i} />
           </GridCol>
         ))}

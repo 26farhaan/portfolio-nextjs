@@ -1,0 +1,41 @@
+.wrapper {
+  width: 56px;
+  height: 28px;
+  /* background-color: red; */
+  background-color: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-6));
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  border: none;
+  align-items: center;
+  position: relative;
+  padding: 12px 4px;
+}
+
+.placeholderLeft {
+  position: absolute;
+  color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-3));
+  left: 8px;
+  margin-top: 2;
+  z-index: 0;
+}
+
+.placeholderRight {
+  position: absolute;
+  color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-3));
+  margin-top: 2;
+  right: 8px;
+  z-index: 0;
+}
+
+.handle {
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}

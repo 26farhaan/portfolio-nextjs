@@ -1,0 +1,26 @@
+.image {
+  object-fit: contain;
+  padding: var(--mantine-spacing-sm);
+  @media (max-width: $mantine-breakpoint-md) {
+    height: 60px;
+    width: auto;
+  }
+}
+
+.accordionControl:hover {
+  border-bottom: 1px solid light-dark(rgba(54, 54, 54, 0.1), rgba(209, 209, 209, 0.1));
+  /* background: light-dark(rgba(158, 158, 158, 0.1), rgba(58, 58, 58, 0.1)); */
+}
+
+.accordionControlLabel {
+  background-color: transparent;
+  padding: 4px !important;
+}
+
+.accordionContent {
+  padding: 0px 4px;
+}
+
+.caption {
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
+}

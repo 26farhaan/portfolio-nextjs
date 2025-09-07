@@ -28,7 +28,7 @@
 }
 
 .baseBadge {
-  text-transform: none;
+  text-transform: none !important;
 }
 
 .audyInput {

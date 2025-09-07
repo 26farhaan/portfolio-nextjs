@@ -8,7 +8,7 @@ import IconFeatures from "@/components/Icons/IconFeatures";
 import IconShowCase from "@/components/Icons/IconShowCase";
 import IconSkills from "@/components/Icons/IconSkills";
 import IconUser from "@/components/Icons/IconUser";
-import CardShowCase from "./Card";
+import CardShowCase from "../../UI/CardShowCase";
 import classes from "./index.module.css";
 import ServicesAnimation from "./ServicesAnimation";
 import SkillsAutoScroll from "./SkillsAutoScroll";
@@ -34,7 +34,7 @@ export default function Features() {
           <CardShowCase>
             <Grid>
               <GridCol span={{ md: 6 }}>
-                <ActionIcon size="xl" color="gray.7">
+                <ActionIcon aria-label="showcase" size="xl" color="gray.7">
                   <IconShowCase size={20} />
                 </ActionIcon>
                 <Text mt="md">{t("features.showcase.title")}</Text>
@@ -126,7 +126,7 @@ export default function Features() {
         <GridCol span={{ md: 3, base: 12 }}>
           <CardShowCase>
             <Flex direction="column" align="center">
-              <ActionIcon size="xl" color="gray.7">
+              <ActionIcon aria-label="showcase" size="xl" color="gray.7">
                 <IconUser />
               </ActionIcon>
               <Text mt="md" ta="center">
@@ -141,7 +141,7 @@ export default function Features() {
         <GridCol span={{ md: 3, base: 12 }}>
           <CardShowCase p="none">
             <Flex p="md" direction="column" align="center">
-              <ActionIcon size="xl" color="gray.7">
+              <ActionIcon aria-label="about-me" size="xl" color="gray.7">
                 <IconSkills />
               </ActionIcon>
               <Text mt="md" ta="center">
@@ -160,7 +160,7 @@ export default function Features() {
         <GridCol span={{ md: 3, base: 12 }}>
           <CardShowCase>
             <Flex direction="column" align="center">
-              <ActionIcon size="xl" color="gray.7">
+              <ActionIcon aria-label="achievements" size="xl" color="gray.7">
                 <IconAchievements />
               </ActionIcon>
               <Text mt="md" ta="center">
@@ -188,7 +188,7 @@ export default function Features() {
           <CardShowCase>
             <Flex h="100%">
               <Box w="100%">
-                <ActionIcon size="xl" color="gray.7">
+                <ActionIcon aria-label="showcase" size="xl" color="gray.7">
                   <IconShowCase size={20} />
                 </ActionIcon>
                 <Text mt="md">{t("features.showcase.title")}</Text>

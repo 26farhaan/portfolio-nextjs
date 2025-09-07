@@ -39,10 +39,25 @@ const id: DefaultLangType = {
       },
     },
   },
+  About: {
+    title: "Tentang Saya",
+    description: "Pelajari lebih lanjut tentang latar belakang, pengalaman, dan minat saya.",
+    career: {
+      title: "Karir",
+      description: "Perjalanan profesional saya.",
+      responsibilities: "Tampilkan tanggung jawab",
+    },
+    education: {
+      title: "Pendidikan",
+      description: "Latar belakang pendidikan saya.",
+    },
+  },
   Sidebar: {
     Home: "Beranda",
     About: "Tentang",
   },
+  years: "Tahun",
+  months: "Bulan",
 };
 
 export default id;

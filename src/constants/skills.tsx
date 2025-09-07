@@ -5,12 +5,15 @@ import IconBootstrap from "@/components/Icons/skills/IconBootstrap";
 import IconCSS from "@/components/Icons/skills/IconCSS";
 import IconDocker from "@/components/Icons/skills/IconDocker";
 import IconFastApi from "@/components/Icons/skills/IconFastApi";
+import IconFigma from "@/components/Icons/skills/IconFigma";
 import IconFrammerMotion from "@/components/Icons/skills/IconFrammerMotion";
 import IconGithub from "@/components/Icons/skills/IconGithub";
 import IconGitlab from "@/components/Icons/skills/IconGitlab";
 import IconHtml5 from "@/components/Icons/skills/IconHtml5";
 import IconJavascript from "@/components/Icons/skills/IconJavascript";
+import IconJira from "@/components/Icons/skills/IconJira";
 import IconMantine from "@/components/Icons/skills/IconMantine";
+import IconMaterialUI from "@/components/Icons/skills/IconMaterialUI";
 import IconMySQL from "@/components/Icons/skills/IconMySQL";
 import IconNextJs from "@/components/Icons/skills/IconNextJs";
 import IconNodeJs from "@/components/Icons/skills/IconNodeJs";
@@ -24,12 +27,13 @@ import IconRedux from "@/components/Icons/skills/IconRedux";
 import IconSQL from "@/components/Icons/skills/IconSQL";
 import IconSupabase from "@/components/Icons/skills/IconSupabase";
 import IconTailwind from "@/components/Icons/skills/IconTailwind";
+import IconTanstack from "@/components/Icons/skills/IconTanstack";
 import IconTypescript from "@/components/Icons/skills/IconTypescript";
 import IconVercel from "@/components/Icons/skills/IconVercel";
 import IconVueJs from "@/components/Icons/skills/IconVueJs";
 import IconZustand from "@/components/Icons/skills/IconZustand";
 
-type SKILLSType = { label: string; icon: ({ size }: { size?: number }) => JSX.Element; color: string }[];
+export type SKILLSType = { label: string; icon: ({ size }: { size?: number }) => JSX.Element; color: string }[];
 
 export const SKILLS: SKILLSType = [
   {
@@ -48,8 +52,13 @@ export const SKILLS: SKILLSType = [
     color: "#377CC8",
   },
   {
-    label: "React",
+    label: "React.js",
     icon: ({ size }) => <IconReact size={size} />,
+    color: "#66DBFB",
+  },
+  {
+    label: "Tanstack React Query",
+    icon: ({ size }) => <IconTanstack size={size} />,
     color: "#66DBFB",
   },
   {
@@ -70,7 +79,7 @@ export const SKILLS: SKILLSType = [
   {
     label: "Next.js",
     icon: ({ size }) => <IconNextJs size={size} />,
-    color: "#000000",
+    color: "#0D3A63",
   },
   {
     label: "Nuxt.js",
@@ -98,6 +107,11 @@ export const SKILLS: SKILLSType = [
     color: "#399DF0",
   },
   {
+    label: "Material UI",
+    icon: ({ size }) => <IconMaterialUI size={size} />,
+    color: "#0286CE",
+  },
+  {
     label: "Bootstrap",
     icon: ({ size }) => <IconBootstrap size={size} />,
     color: "#8118FA",
@@ -110,7 +124,7 @@ export const SKILLS: SKILLSType = [
   {
     label: "Vercel",
     icon: ({ size }) => <IconVercel size={size} />,
-    color: "#000000",
+    color: "#0D3A63",
   },
   {
     label: "Redux",
@@ -128,9 +142,19 @@ export const SKILLS: SKILLSType = [
     color: "#F9F133",
   },
   {
+    label: "Jira",
+    icon: ({ size }) => <IconJira size={size} />,
+    color: "#1E3050",
+  },
+  {
     label: "MySQL",
     icon: ({ size }) => <IconMySQL size={size} />,
     color: "#2D8BD0",
+  },
+  {
+    label: "Figma",
+    icon: ({ size }) => <IconFigma size={size} />,
+    color: "#097AF9",
   },
   {
     label: "PostgreSQL",
@@ -155,7 +179,7 @@ export const SKILLS: SKILLSType = [
   {
     label: "NPM",
     icon: ({ size }) => <IconNPM size={size} />,
-    color: "#Csize82E",
+    color: "#0D3A63",
   },
   {
     label: "PNPM",
@@ -165,7 +189,7 @@ export const SKILLS: SKILLSType = [
   {
     label: "Github",
     icon: ({ size }) => <IconGithub size={size} />,
-    color: "#000000",
+    color: "#0D3A63",
   },
   {
     label: "Gitlab",

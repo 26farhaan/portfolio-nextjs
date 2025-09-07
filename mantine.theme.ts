@@ -2,6 +2,7 @@
 
 // import { Arimo } from "next/font/google";
 import {
+  Badge,
   Button,
   createTheme,
   DEFAULT_THEME,
@@ -17,7 +18,7 @@ import {
 
 // import { DatePickerInput } from "@mantine/dates";
 
-// import style from "@/styles/mantine.module.css";
+import styles from "@/styles/base.module.css";
 
 // const fontArimo = Arimo({
 //   subsets: ["latin"],
@@ -86,8 +87,13 @@ const theme: MantineThemeOverride = {
     // }),
     Button: Button.extend({
       defaultProps: {
-        variant: "filled",
+        variant: "outline",
       },
+    }),
+    Badge: Badge.extend({
+      classNames: () => ({
+        root: styles.baseBadge,
+      }),
     }),
   },
   primaryColor: "tasman",

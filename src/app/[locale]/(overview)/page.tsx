@@ -1,8 +1,17 @@
+import { Metadata } from "next";
 import { Box, Divider, Flex, Text } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
 import Features from "@/components/Home/Features";
 import Skills from "@/components/Home/Skills";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Home",
+    default: "Mohamad Farhan | Home",
+  },
+  description: `Home page mohamad farhan's portfolio`,
+};
 
 export default function Home() {
   const t = useTranslations("HomePage");

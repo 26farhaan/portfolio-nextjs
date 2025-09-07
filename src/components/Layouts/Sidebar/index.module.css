@@ -2,3 +2,7 @@
   overflow: auto;
   max-height: 100vh;
 }
+
+.usename {
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-6));
+}
