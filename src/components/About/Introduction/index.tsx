@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { Box, Divider } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
-import IconSignature from "@/components/Icons/IconSignature";
+import IconSignature from "@/components/Icon/IconSignature";
 import HeaderSection from "@/components/UI/HeaderSection";
 
 export default function Introduction() {

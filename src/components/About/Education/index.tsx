@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Flex, Grid, GridCol, Text } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
-import IconEducation from "@/components/Icons/IconEducation";
+import IconEducation from "@/components/Icon/IconEducation";
 import CardShowCase from "@/components/UI/CardShowCase";
 import HeaderSection from "@/components/UI/HeaderSection";
 import classes from "./index.module.css";

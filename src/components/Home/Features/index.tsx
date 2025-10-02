@@ -5,11 +5,11 @@ import { ActionIcon, Anchor, Box, Flex, Grid, GridCol, Text } from "@mantine/cor
 import * as motion from "motion/react-client";
 import { useTranslations } from "next-intl";
 
-import IconAchievements from "@/components/Icons/IconAchivements";
-import IconFeatures from "@/components/Icons/IconFeatures";
-import IconShowCase from "@/components/Icons/IconShowCase";
-import IconSkills from "@/components/Icons/IconSkills";
-import IconUser from "@/components/Icons/IconUser";
+import IconAchievements from "@/components/Icon/IconAchivements";
+import IconFeatures from "@/components/Icon/IconFeatures";
+import IconShowCase from "@/components/Icon/IconShowCase";
+import IconSkills from "@/components/Icon/IconSkills";
+import IconUser from "@/components/Icon/IconUser";
 import { useListProjectsQuery } from "@/queries/projects-queries";
 import CardShowCase from "../../UI/CardShowCase";
 import classes from "./index.module.css";
