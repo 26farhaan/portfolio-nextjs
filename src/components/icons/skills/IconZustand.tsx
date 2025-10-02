@@ -5,7 +5,6 @@ type IconZustandProps = {
 } & SVGProps<SVGSVGElement>;
 
 const IconZustand = (props: IconZustandProps) => {
-  // TEST
   const { width = props.size || 24, height = props.size || 24, ...rest } = props;
   return (
     <svg {...rest} width={width} height={height} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
