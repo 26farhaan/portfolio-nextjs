@@ -1,0 +1,4 @@
+.body {
+  background-color: light-dark(var(----mantine-color-white), var(----mantine-color-black));
+  height: 100%;
+}

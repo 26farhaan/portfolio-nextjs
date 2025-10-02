@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { listCareers } from "@/lib/careers";
+import { listCareers } from "@/queries/careers";
 
 export async function GET() {
   const data = await listCareers();

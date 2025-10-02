@@ -11,7 +11,6 @@ export default function TextPage() {
   const { x, y } = useMousePosition();
   const size = isHovered ? 400 : 40;
 
-  console.log(x, y);
   return (
     <main className={classes.main}>
       <motion.div

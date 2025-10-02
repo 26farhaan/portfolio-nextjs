@@ -39,7 +39,6 @@ export default function LangSwitch() {
       <motion.div
         className={classes.handle}
         layout
-        onAnimationComplete={() => console.log("im here")}
         transition={{
           type: "spring",
           visualDuration: 0.2,

@@ -1,3 +1,11 @@
 .caption {
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
 }
+
+.image {
+  object-fit: contain;
+  @media (max-width: $mantine-breakpoint-md) {
+    height: 60px;
+    width: auto;
+  }
+}

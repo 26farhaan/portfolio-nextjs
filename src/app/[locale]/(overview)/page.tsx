@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import { Box, Divider, Flex, Text } from "@mantine/core";
-import { useTranslations } from "next-intl";
+import { Box, Divider, Flex, Group, Text } from "@mantine/core";
+import { getTranslations } from "next-intl/server";
 
 import Features from "@/components/Home/Features";
 import Skills from "@/components/Home/Skills";
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   description: `Home page mohamad farhan's portfolio`,
 };
 
-export default function Home() {
-  const t = useTranslations("HomePage");
+export default async function Home() {
+  const t = await getTranslations("HomePage");
   // const test = "test";
 
   return (
@@ -22,10 +22,10 @@ export default function Home() {
       <Text component="h1" fz="h3" fw={600}>
         {t("name")}
       </Text>
-      <Flex align="center" gap="md">
+      <Group align="center" gap="md">
         <Text component="h2">● {t("based")}</Text>
         <Text component="h2">● {t("workType")}</Text>
-      </Flex>
+      </Group>
       <Text component="p" mt="sm" fz="sm">
         {t("intro.1")}
         <br />

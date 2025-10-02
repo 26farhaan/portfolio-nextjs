@@ -1,4 +1,4 @@
-import { Box, Flex, FlexProps, Text } from "@mantine/core";
+import { Box, Flex, Group, GroupProps, Text } from "@mantine/core";
 
 import classes from "./index.module.css";
 
@@ -6,17 +6,17 @@ type HeaderSectionProps = {
   title: string;
   description: string;
   leftSection?: React.ReactNode;
-  flexOptions?: FlexProps;
+  groupOptions?: GroupProps;
 };
 
-export default function HeaderSection({ title, description, leftSection, flexOptions }: HeaderSectionProps) {
-  const { align = "center", gap = "sm" } = flexOptions || {};
+export default function HeaderSection({ title, description, leftSection, groupOptions }: HeaderSectionProps) {
+  const { align = "center", gap = "sm" } = groupOptions || {};
   return (
     <Box>
-      <Flex align={align} gap={gap}>
+      <Group align={align} gap={gap}>
         {leftSection}
         <Text>{title}</Text>
-      </Flex>
+      </Group>
       <Text size="xs" className={classes.caption}>
         {description}
       </Text>

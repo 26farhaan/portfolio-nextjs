@@ -8,8 +8,8 @@ import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { mantinetheme, resolver } from "../../mantine.theme";
-import MantineProgressHandler from "./[locale]/MantineProgressHandler";
+import { mantinetheme } from "../../../mantine.theme";
+import MantineProgressHandler from "./MantineProgressHandler";
 // CSS Mantine dan style lain idealnya diimport SEKALI di root
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
@@ -44,7 +44,7 @@ function getQueryClient() {
   return browserQueryClient;
 }
 
-export default function Providers({ children }: { children: ReactNode }) {
+export default function CombinedProviders({ children }: { children: ReactNode }) {
   // NOTE: Avoid useState when initializing the query client if you don't
   //       have a suspense boundary between this and the code that may
   //       suspend because React will throw away the client on the initial
@@ -52,7 +52,7 @@ export default function Providers({ children }: { children: ReactNode }) {
   const queryClient = getQueryClient();
 
   return (
-    <MantineProvider defaultColorScheme="auto" theme={mantinetheme} cssVariablesResolver={resolver}>
+    <MantineProvider defaultColorScheme="auto" theme={mantinetheme}>
       <QueryClientProvider client={queryClient}>
         <Notifications />
         <MantineProgressHandler />

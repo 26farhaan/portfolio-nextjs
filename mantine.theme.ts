@@ -27,7 +27,7 @@ import styles from "@/styles/base.module.css";
 //   weight: ["400", "700"],
 // });
 
-const customColors = {
+export const customColors = {
   "own-neutral-300": "#333333",
 };
 

@@ -4,7 +4,10 @@ import { usePathname } from "next/navigation";
 import { Flex, NavLink } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
+import IconCertification from "@/components/Icons/IconCertification";
+import IconContact from "@/components/Icons/IconContact";
 import IconHome from "@/components/Icons/IconHome";
+import IconProjects from "@/components/Icons/IconProjects";
 import IconUser from "@/components/Icons/IconUser";
 import classes from "./index.module.css";
 
@@ -23,6 +26,24 @@ export default function Sidenav() {
       icon: <IconUser size={20} />,
       href: "/about",
       key: "about",
+    },
+    {
+      label: t("Achivements"),
+      icon: <IconCertification size={20} />,
+      href: "/achivements",
+      key: "achivements",
+    },
+    {
+      label: t("Projects"),
+      icon: <IconProjects size={20} />,
+      href: "/projects",
+      key: "projects",
+    },
+    {
+      label: t("Contact"),
+      icon: <IconContact size={20} />,
+      href: "/contact",
+      key: "contact",
     },
   ];
 

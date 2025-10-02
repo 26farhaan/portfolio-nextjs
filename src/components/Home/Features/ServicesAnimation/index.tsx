@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Box, Flex, Text } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 import { motion } from "motion/react"; // kalau pakai framer: "framer-motion"
 
 const ITEMS = ["WEB", "BACKEND", "UI/UX", "AI"] as const;

@@ -4,8 +4,8 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: [
-      // "@mantine/core",
-      // "@mantine/hooks",
+      "@mantine/core",
+      "@mantine/hooks",
       // "@mantine/form",
       // "@mantine/notifications",
       // "@mantine/nprogress",

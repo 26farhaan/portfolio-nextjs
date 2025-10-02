@@ -21,7 +21,8 @@ import { getTranslations } from "next-intl/server";
 import IconCareer from "@/components/Icons/IconCareer";
 import CardShowCase from "@/components/UI/CardShowCase";
 import HeaderSection from "@/components/UI/HeaderSection";
-import { listCareers } from "@/lib/careers";
+import { enumSKILLS } from "@/constants/skills";
+import { listCareers } from "@/queries/careers";
 import classes from "./index.module.css";
 
 type CareersProops = {
@@ -37,7 +38,7 @@ export default async function Careers({ locale }: CareersProops) {
     <section>
       <Box my="lg">
         <HeaderSection
-          flexOptions={{ align: "start" }}
+          groupOptions={{ align: "start" }}
           leftSection={
             <Box mt={2}>
               <IconCareer size={20} />
@@ -47,7 +48,7 @@ export default async function Careers({ locale }: CareersProops) {
           description={t("description")}
         />
       </Box>
-      <Accordion defaultValue="1" variant="unstyled">
+      <Accordion defaultValue="" variant="unstyled">
         <Flex direction="column" gap="md">
           {careers.map((item, index) => {
             return (
@@ -109,12 +110,15 @@ export default async function Careers({ locale }: CareersProops) {
                             </ListItem>
                           ))}
                         </List>
-                        <Flex gap="sm" mt="md">
-                          {item?.tools?.map((tool, index) => (
-                            <Tooltip label={tool.label} key={index} mt="sm">
-                              {tool.icon({ size: 20 })}
-                            </Tooltip>
-                          ))}
+                        <Flex gap="sm" mt="md" wrap="wrap">
+                          {item?.tools?.map((tool, index) => {
+                            const skill = enumSKILLS[tool];
+                            return (
+                              <Tooltip label={skill?.label || ""} key={index} mt="sm">
+                                {skill?.icon({ size: 20 })}
+                              </Tooltip>
+                            );
+                          })}
                         </Flex>
                       </AccordionPanel>
                     </AccordionItem>

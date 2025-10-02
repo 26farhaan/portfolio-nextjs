@@ -1,4 +1,9 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .body {
-  background-color: light-dark(white, black);
+  background-color: light-dark(var(----mantine-color-white), var(----mantine-color-black));
   height: 100%;
+  overflow: hidden;
 }

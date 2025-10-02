@@ -47,7 +47,14 @@ export default function CardShowCase(props: CardShowCaseProps) {
   }
 
   return (
-    <Box {...boxProps} p={p || "md"} className={classes.card} onMouseMove={onMove} onMouseLeave={onLeave} ref={ref}>
+    <Box
+      {...boxProps}
+      p={p !== undefined ? p : "md"}
+      className={classes.card}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      ref={ref}
+    >
       {/* overlay yang mengikuti mouse (hanya background/blur yang dianimasikan) */}
       <motion.div
         className={classes.spot}

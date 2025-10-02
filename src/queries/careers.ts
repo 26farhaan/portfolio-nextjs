@@ -12,7 +12,7 @@ export type Career = {
 
 // Satu-satunya fungsi baca data
 export async function listCareers(): Promise<LISTCAREERType[]> {
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
+  // await new Promise((resolve) => setTimeout(resolve, 500));
   // di sini nanti bisa ganti ke Prisma/DB call, tanpa ubah pemanggil
   return LISTCAREER;
 }

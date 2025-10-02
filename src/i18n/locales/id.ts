@@ -26,8 +26,8 @@ const id: DefaultLangType = {
         description: "Siapa saya dan apa yang saya lakukan.",
       },
       skills: {
-        title: "Keahlian",
-        description: "Mencakup teknologi mobile, web, AI, dan UI/UX.",
+        title: "Keahlian dan Alat",
+        description: "Mencakup teknologi Backend, web, AI, dan UI/UX.",
       },
       achievements: {
         title: "Pencapaian",
@@ -35,7 +35,7 @@ const id: DefaultLangType = {
       },
       services: {
         title: "Layanan",
-        description: "Solusi menyeluruh dalam web, mobile, AI, dan desain.",
+        description: "Solusi menyeluruh dalam web, backend, AI, dan desain.",
       },
     },
   },
@@ -50,14 +50,34 @@ const id: DefaultLangType = {
     education: {
       title: "Pendidikan",
       description: "Latar belakang pendidikan saya.",
+      degree: "Sarjana",
+      major: "Teknik Informatika",
+      majorShs: "SMA",
+      degreeShs: "IPA",
     },
+  },
+  Achievements: {
+    title: "Pencapaian",
+    description:
+      "Koleksi sertifikat dan lencana pilihan yang saya peroleh sepanjang perjalanan profesional dan akademis saya.",
+  },
+  Projects: {
+    title: "Proyek",
+    description: "Sebuah etalase proyek pribadi dan proyek perusahaan yang telah saya buat atau saya kontribusikan.",
+    search: "Cari Proyek",
+    company: "Filter berdasarkan Perusahaan",
+    ownProjects: "Proyek Pribadi",
   },
   Sidebar: {
     Home: "Beranda",
     About: "Tentang",
+    Achivements: "Pencapaian",
+    Projects: "Proyek",
+    Contact: "Kontak",
   },
   years: "Tahun",
   months: "Bulan",
+  all: "Semua",
 };
 
 export default id;

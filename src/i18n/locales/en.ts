@@ -1,4 +1,8 @@
 import { title } from "process";
+import { all } from "axios";
+import { desc } from "motion/react-client";
+
+import Projects from "@/app/[locale]/(overview)/projects/page";
 
 const en = {
   HomePage: {
@@ -26,8 +30,8 @@ const en = {
         description: "Who I am and what I do.",
       },
       skills: {
-        title: "Skills",
-        description: "Covering mobile, web, AI, and UI/UX technologies.",
+        title: "Skills and Tools",
+        description: "Covering Backend, web, AI, and UI/UX technologies.",
       },
       achievements: {
         title: "Achievements",
@@ -35,7 +39,7 @@ const en = {
       },
       services: {
         title: "Services",
-        description: "End-to-end solutions in web, mobile, AI, and design.",
+        description: "End-to-end solutions in web, backend, AI, and design.",
       },
     },
   },
@@ -50,14 +54,34 @@ const en = {
     education: {
       title: "Education",
       description: "My educational background.",
+      major: "Computer Science",
+      degree: "Bachelor's degree",
+      majorShs: "High School",
+      degreeShs: "Science",
     },
+  },
+  Achievements: {
+    title: "Achievements",
+    description:
+      "A curated collection of certificates and badges I've earned throughout my professional and academic journey.",
+  },
+  Projects: {
+    title: "Projects",
+    description: "A showcase of personal and company projects I have created or contributed to.",
+    search: "Search Projects",
+    company: "Filter by Company",
+    ownProjects: "Own Projects",
   },
   Sidebar: {
     Home: "Home",
     About: "About",
+    Achivements: "Achivements",
+    Projects: "Projects",
+    Contact: "Contact",
   },
   years: "Years",
   months: "Months",
+  all: "All",
 };
 
 export type DefaultLangType = typeof en;
