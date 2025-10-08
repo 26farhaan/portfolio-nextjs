@@ -72,12 +72,42 @@ const en = {
     company: "Filter by Company",
     ownProjects: "Own Projects",
   },
+  Contact: {
+    title: "Contact",
+    description: "Connect with me through the following platforms.",
+    gmail: {
+      title: "Stay in Touch",
+      description: "Reach out via email for inquiries or collaborations.",
+    },
+    instagram: {
+      title: "Follow My Journey",
+      description: "Follow my creative journey.",
+    },
+    linkedin: {
+      title: "Let's Connect",
+      description: "Connect with me professionally.",
+    },
+    github: {
+      title: "Explore My Code",
+      description: "Check out my projects and contributions on GitHub.",
+    },
+    tiktok: {
+      title: "Fun and Creativity",
+      description: "Join me for some fun and creative content on TikTok.",
+    },
+  },
+  Services: {
+    title: "I build responsive, modern, and SEO-friendly websites, with an average Lighthouse score of over 90%.",
+    description:
+      "focus on high performance and security, modern but lightweight and of course clean code and easy to maintain",
+  },
   Sidebar: {
     Home: "Home",
     About: "About",
-    Achivements: "Achivements",
+    Achievements: "Achievements",
     Projects: "Projects",
     Contact: "Contact",
+    Services: "Services",
   },
   years: "Years",
   months: "Months",

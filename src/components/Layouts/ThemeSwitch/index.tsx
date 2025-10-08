@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { useComputedColorScheme, useMantineColorScheme } from "@mantine/core";
 import { m } from "motion/react"; // alias motion.div => m.div
 
-import IconMoonStars from "@/components/Icon/IconMoonStars";
-import IconSun from "@/components/Icon/IconSun";
+import IconMoonStars from "@/components/Icons/IconMoonStars";
+import IconSun from "@/components/Icons/IconSun";
 import classes from "./index.module.css";
 
 export default function ThemeSwitch() {

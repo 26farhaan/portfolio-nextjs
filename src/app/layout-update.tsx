@@ -2,8 +2,8 @@
 import { ReactNode } from "react";
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 
-import CombinedProviders from "./[locale]/Providers"; // <- gabungan Mantine + React Query
 import classes from "./layout.module.css";
+import CombinedProviders from "./Providers"; // <- gabungan Mantine + React Query
 
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";

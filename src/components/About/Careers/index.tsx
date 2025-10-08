@@ -18,7 +18,7 @@ import {
 import dayjs from "dayjs";
 import { getTranslations } from "next-intl/server";
 
-import IconCareer from "@/components/Icon/IconCareer";
+import IconCareer from "@/components/Icons/IconCareer";
 import CardShowCase from "@/components/UI/CardShowCase";
 import HeaderSection from "@/components/UI/HeaderSection";
 import { enumSKILLS } from "@/constants/skills";

@@ -6,7 +6,7 @@ import { Anchor, Box, Flex, Grid, GridCol, Text } from "@mantine/core";
 import { motion } from "motion/react"; // kalau pakai framer: "framer-motion"
 
 import styles from "@/styles/global.module.css";
-import IconArrowRight from "../Icon/IconArrowRight";
+import IconArrowRight from "../Icons/IconArrowRight";
 import CardShowCase from "../UI/CardShowCase";
 import classes from "./index.module.css";
 

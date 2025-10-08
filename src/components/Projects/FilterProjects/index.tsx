@@ -6,7 +6,7 @@ import { Group, Loader, Select, TextInput } from "@mantine/core";
 import { debounce } from "lodash";
 import { useTranslations } from "next-intl";
 
-import IconSearch from "@/components/Icon/IconSearch";
+import IconSearch from "@/components/Icons/IconSearch";
 import { useListCareersQuery } from "@/queries/careers-queries";
 
 export default function FilterProjects() {

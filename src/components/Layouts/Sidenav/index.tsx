@@ -1,15 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Flex, NavLink } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
-import IconCertification from "@/components/Icon/IconCertification";
-import IconContact from "@/components/Icon/IconContact";
-import IconHome from "@/components/Icon/IconHome";
-import IconProjects from "@/components/Icon/IconProjects";
-import IconUser from "@/components/Icon/IconUser";
+import IconCertification from "@/components/Icons/IconCertification";
+import IconContact from "@/components/Icons/IconContact";
+import IconHome from "@/components/Icons/IconHome";
+import IconProjects from "@/components/Icons/IconProjects";
+import IconUser from "@/components/Icons/IconUser";
 import classes from "./index.module.css";
+
+const IconService = dynamic(() => import("@/components/Icons/IconService"), { ssr: false });
 
 export default function Sidenav() {
   const t = useTranslations("Sidebar");
@@ -28,11 +31,17 @@ export default function Sidenav() {
       key: "about",
     },
     {
-      label: t("Achivements"),
-      icon: <IconCertification size={20} />,
-      href: "/achivements",
-      key: "achivements",
+      label: t("Services"),
+      icon: <IconService size={20} />,
+      href: "/services",
+      key: "services",
     },
+    // {
+    //   label: t("Achievements"),
+    //   icon: <IconCertification size={20} />,
+    //   href: "/achievements",
+    //   key: "achievements",
+    // },
     {
       label: t("Projects"),
       icon: <IconProjects size={20} />,

@@ -1,7 +1,7 @@
 import { Box, Flex, Grid, GridCol, Text } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
-import IconCode from "@/components/Icon/IconCode";
+import IconCode from "@/components/Icons/IconCode";
 import { SKILLS } from "@/constants/skills";
 import SkillsIcon from "./SkillsIcon";
 

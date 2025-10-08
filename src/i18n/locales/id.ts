@@ -68,12 +68,43 @@ const id: DefaultLangType = {
     company: "Filter berdasarkan Perusahaan",
     ownProjects: "Proyek Pribadi",
   },
+  Contact: {
+    title: "Kontak",
+    description: "Terhubung dengan saya melalui platform berikut.",
+    gmail: {
+      title: "Gmail",
+      description: "Email saya di gmail",
+    },
+    linkedin: {
+      title: "LinkedIn",
+      description: "Terhubung dengan saya di LinkedIn",
+    },
+    github: {
+      title: "GitHub",
+      description: "Lihat proyek dan kontribusi saya di GitHub",
+    },
+    instagram: {
+      title: "Instagram",
+      description: "Ikuti saya di Instagram",
+    },
+    tiktok: {
+      title: "TikTok",
+      description: "Ikuti saya di TikTok",
+    },
+  },
+  Services: {
+    title:
+      "Saya membangun website yang responsif, modern, dan ramah SEO, dengan skor Lighthouse rata-rata di atas 90%.",
+    description:
+      "fokus pada kinerja tinggi dan keamanan, modern tetapi ringan dan tentu saja kode yang bersih dan mudah untuk dipelihara",
+  },
   Sidebar: {
     Home: "Beranda",
     About: "Tentang",
-    Achivements: "Pencapaian",
+    Achievements: "Pencapaian",
     Projects: "Proyek",
     Contact: "Kontak",
+    Services: "Layanan",
   },
   years: "Tahun",
   months: "Bulan",

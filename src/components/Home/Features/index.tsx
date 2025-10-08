@@ -5,11 +5,12 @@ import { ActionIcon, Anchor, Box, Flex, Grid, GridCol, Text } from "@mantine/cor
 import * as motion from "motion/react-client";
 import { useTranslations } from "next-intl";
 
-import IconAchievements from "@/components/Icon/IconAchivements";
-import IconFeatures from "@/components/Icon/IconFeatures";
-import IconShowCase from "@/components/Icon/IconShowCase";
-import IconSkills from "@/components/Icon/IconSkills";
-import IconUser from "@/components/Icon/IconUser";
+import IconAchievements from "@/components/Icons/IconAchivements";
+import IconFeatures from "@/components/Icons/IconFeatures";
+import IconService from "@/components/Icons/IconService";
+import IconShowCase from "@/components/Icons/IconShowCase";
+import IconSkills from "@/components/Icons/IconSkills";
+import IconUser from "@/components/Icons/IconUser";
 import { useListProjectsQuery } from "@/queries/projects-queries";
 import CardShowCase from "../../UI/CardShowCase";
 import classes from "./index.module.css";
@@ -19,8 +20,6 @@ import SkillsAutoScroll from "./SkillsAutoScroll";
 export default function Features() {
   const t = useTranslations("HomePage");
   const { data } = useListProjectsQuery();
-
-  // const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <Box>
@@ -38,9 +37,11 @@ export default function Features() {
           <CardShowCase>
             <Grid>
               <GridCol span={{ md: 6 }}>
-                <ActionIcon aria-label="showcase" size="xl" color="gray.7">
-                  <IconShowCase size={20} />
-                </ActionIcon>
+                <Anchor href="/projects" rel="noopener noreferrer">
+                  <ActionIcon aria-label="showcase" size="xl" color="gray.7">
+                    <IconShowCase size={20} />
+                  </ActionIcon>
+                </Anchor>
                 <Text mt="md">{t("features.showcase.title")}</Text>
                 <Text fz="xs" maw="80%" c="gray">
                   {t("features.showcase.description")}
@@ -74,9 +75,11 @@ export default function Features() {
         <GridCol span={{ md: 3, base: 12 }}>
           <CardShowCase>
             <Flex direction="column" align="center">
-              <ActionIcon aria-label="showcase" size="xl" color="gray.7">
-                <IconUser />
-              </ActionIcon>
+              <Anchor href="/about" rel="noopener noreferrer">
+                <ActionIcon aria-label="showcase" size="xl" color="gray.7">
+                  <IconUser />
+                </ActionIcon>
+              </Anchor>
               <Text mt="md" ta="center">
                 {t("features.aboutMe.title")}
               </Text>
@@ -89,7 +92,7 @@ export default function Features() {
         <GridCol span={{ md: 3, base: 12 }}>
           <CardShowCase p="none">
             <Flex p="md" direction="column" align="center">
-              <ActionIcon aria-label="about-me" size="xl" color="gray.7">
+              <ActionIcon disabled aria-label="about-me" size="xl" color="gray.7">
                 <IconSkills />
               </ActionIcon>
               <Text mt="md" ta="center">
@@ -108,9 +111,11 @@ export default function Features() {
         <GridCol span={{ md: 3, base: 12 }}>
           <CardShowCase>
             <Flex direction="column" align="center">
-              <ActionIcon aria-label="achievements" size="xl" color="gray.7">
-                <IconAchievements />
-              </ActionIcon>
+              <Anchor href="/achievements" rel="noopener noreferrer">
+                <ActionIcon aria-label="achievements" size="xl" color="gray.7">
+                  <IconAchievements />
+                </ActionIcon>
+              </Anchor>
               <Text mt="md" ta="center">
                 {t("features.achievements.title")}
               </Text>
@@ -136,9 +141,11 @@ export default function Features() {
           <CardShowCase>
             <Flex h="100%">
               <Box w="100%">
-                <ActionIcon aria-label="services" size="xl" color="gray.7">
-                  <IconShowCase size={20} />
-                </ActionIcon>
+                <Anchor href="/services" rel="noopener noreferrer">
+                  <ActionIcon aria-label="services" size="xl" color="gray.7">
+                    <IconService size={20} />
+                  </ActionIcon>
+                </Anchor>
                 <Text mt="md">{t("features.services.title")}</Text>
                 <Text fz="xs" maw="80%" c="gray">
                   {t("features.services.description")}

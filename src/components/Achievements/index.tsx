@@ -2,7 +2,7 @@ import { Anchor, Grid, GridCol } from "@mantine/core";
 
 import Achivement from "./Achivement";
 
-export default function ListAchivement() {
+export default function ListAchievement() {
   return (
     <Grid>
       <GridCol span={{ md: 4 }}>

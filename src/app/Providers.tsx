@@ -8,7 +8,7 @@ import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { mantinetheme } from "../../../mantine.theme";
+import { mantinetheme } from "../../mantine.theme";
 import MantineProgressHandler from "./MantineProgressHandler";
 // CSS Mantine dan style lain idealnya diimport SEKALI di root
 import "@mantine/core/styles.css";

@@ -349,7 +349,7 @@ export const useListProjectsQuery = (options?: { queryParams?: Partial<UseProjec
   const query = useQuery({
     queryKey: ["projects", queryParams],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
       return response;
     },
     enabled,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -41,6 +41,7 @@ export default function ListProjects() {
   const [selected, setSelected] = useState<ProjectType | null>(null);
 
   const { data, isLoading } = useListProjectsQuery({ queryParams: { search: qSearch, company_code: qCompanyCode } });
+  const projects = useMemo(() => data || [], [data]);
 
   useEffect(() => {
     if (!openId || !data) {
@@ -84,8 +85,8 @@ export default function ListProjects() {
             <Skeleton height={20} radius="md" />
           </GridCol>
         ))
-      ) : data?.length ? (
-        (data ?? []).map((item) => (
+      ) : projects?.length ? (
+        (projects ?? []).map((item) => (
           <GridCol span={{ md: 4 }} key={item.id} id={`project-${item.id}`}>
             <motion.div
               className={classes.cardWrapper}
@@ -98,7 +99,7 @@ export default function ListProjects() {
             >
               <Box className={classes.cardWrapper}>
                 <CardShowCase p={0}>
-                  <Image className={classes.image} src={item.image} alt={item.name} width={300} height={300} />
+                  <Image priority className={classes.image} src={item.image} alt={item.name} width={300} height={300} />
                   <Box p="md">
                     <Text fz="lg">{item.name}</Text>
                     <Text className={styles.caption} fz="sm" lineClamp={2}>
@@ -142,8 +143,8 @@ export default function ListProjects() {
       )}
 
       <Modal size={720} opened={!!openId} onClose={closeModal} title="Detail Project">
-        {isLoading && !data && <Text>Loading...</Text>}
-        {!!openId && data && !selected && <Text>Data tidak ditemukan.</Text>}
+        {isLoading && !projects && <Text>Loading...</Text>}
+        {!!openId && projects && !selected && <Text>Data tidak ditemukan.</Text>}
         {selected && (
           <>
             <Image className={classes.imageBanner} src={selected.image} alt={selected.name} width={300} height={300} />
