@@ -1,18 +1,8 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { notFound } from "next/navigation";
-import {
-  AppShell,
-  AppShellHeader,
-  AppShellMain,
-  AppShellNavbar,
-  Avatar,
-  Box,
-  Burger,
-  // Container, Grid, GridCol, Text,
-  Group,
-} from "@mantine/core";
+import { AppShell, AppShellHeader, AppShellMain, AppShellNavbar, Avatar, Box, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import * as motion from "motion/react-client";
 
@@ -24,8 +14,21 @@ import classes from "./layout.module.css";
 export default function RootLayout({ children }: { children: ReactNode }) {
   const [opened, { toggle }] = useDisclosure();
   const [isTop, setIsTop] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const isMobile = typeof window !== "undefined" ? window.matchMedia("(hover: none)").matches : false;
+  useEffect(() => {
+    // hanya jalan di client
+    setMounted(true);
+    const mql = window.matchMedia("(hover: none)");
+    setIsMobile(mql.matches);
+
+    // optional: dengarkan perubahan orientasi/device
+    const listener = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", listener);
+    return () => mql.removeEventListener("change", listener);
+  }, []);
+
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
     if (isMobile && target.scrollTop < 25) {
@@ -36,6 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   };
 
   if (!children) return notFound();
+
   return (
     <main className={classes.root}>
       <AppShell
@@ -51,42 +55,48 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         }}
       >
         <AppShellHeader
-          classNames={{ header: `${classes.headerShell} ${!isTop && !opened ? classes.headerShellScrolled : ""}` }}
+          classNames={{
+            header: `${classes.headerShell} ${!isTop && !opened ? classes.headerShellScrolled : ""}`,
+          }}
           hiddenFrom="sm"
         >
           <Group h="100%" px="md">
             <Burger opened={opened} onClick={toggle} size="sm" />
+
             <motion.div
+              suppressHydrationWarning
               className={classes.switchWrapMob}
-              initial={{ opacity: isTop && isMobile ? 1 : 0, scale: isTop && isMobile ? 1 : 0 }}
-              animate={{ opacity: !opened ? 1 : 0, scale: !opened ? 1 : 0 }} // Animate x position based on isHovered state
+              initial={false}
+              animate={{
+                opacity: !opened && isMobile ? 1 : 0,
+                scale: !opened && isMobile ? 1 : 0,
+              }}
               transition={{ duration: 0.2 }}
             >
               <Group>
-                <LangSwitch />
-                <ThemeSwitch />
-                <Avatar alt="Mohamad Farhan Profile" variant="filled" size={30} src="/images/profile-1.jpg" />
+                {mounted ? (
+                  <>
+                    <LangSwitch />
+                    <ThemeSwitch />
+                    <Avatar alt="Mohamad Farhan Profile" variant="filled" size={30} src="/images/profile-1.jpg" />
+                  </>
+                ) : (
+                  // Placeholder saat SSR (biar struktur sama)
+                  <Box style={{ width: 90, height: 30 }} />
+                )}
               </Group>
             </motion.div>
           </Group>
         </AppShellHeader>
+
         <AppShellNavbar classNames={{ navbar: classes.navbar }} withBorder={false}>
           <Sidebar />
         </AppShellNavbar>
+
         <AppShellMain classNames={{ main: classes.mainShell }} onScroll={handleScroll}>
           <div className={classes.childWrapper}>{children}</div>
         </AppShellMain>
       </AppShell>
-      {/* <Container size="lg" className={classes.container}>
-        <Grid>
-          <GridCol span={{ md: 3 }} className={classes.sidebarWrapper}>
-            <Sidebar />
-          </GridCol>
-          <GridCol span={{ md: 9 }} p="md" pb={100} className={classes.contentWrapper}>
-            {children}
-          </GridCol>
-        </Grid>
-      </Container> */}
     </main>
   );
 }

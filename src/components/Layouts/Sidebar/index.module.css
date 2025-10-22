@@ -1,6 +1,12 @@
 .rootSidebar {
+  overflow: auto;
+  height: 100%;
 }
 
 .usename {
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-6));
+}
+
+.copyRight {
+  margin-top: auto;
 }

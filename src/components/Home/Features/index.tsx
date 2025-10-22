@@ -108,7 +108,7 @@ export default function Features() {
             </Box>
           </CardShowCase>
         </GridCol>
-        <GridCol span={{ md: 3, base: 12 }}>
+        {/* <GridCol span={{ md: 3, base: 12 }}>
           <CardShowCase>
             <Flex direction="column" align="center">
               <Anchor href="/achievements" rel="noopener noreferrer">
@@ -124,8 +124,8 @@ export default function Features() {
               </Text>
             </Flex>
           </CardShowCase>
-        </GridCol>
-        <GridCol span={{ md: 3, base: 12 }}>
+        </GridCol> */}
+        <GridCol span={{ md: 6, base: 12 }}>
           <CardShowCase>
             <Flex direction="column" align="center">
               {/* <ActionIcon size="xl" color="gray.7">

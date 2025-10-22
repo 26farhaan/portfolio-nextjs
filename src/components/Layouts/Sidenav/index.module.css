@@ -4,5 +4,14 @@
 }
 
 .activeLink {
-  background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-gray-8));
+  background-color: light-dark(var(--mantine-color-indigo-2), var(--mantine-color-indigo-2));
+  color: black !important;
+}
+
+.link:hover {
+  background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-8));
+}
+.activeLink:hover {
+  background-color: light-dark(var(--mantine-color-indigo-2), var(--mantine-color-indigo-2));
+  color: black !important;
 }

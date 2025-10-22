@@ -1,6 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Flex, NavLink } from "@mantine/core";
 import { useTranslations } from "next-intl";
@@ -9,15 +9,16 @@ import IconCertification from "@/components/Icons/IconCertification";
 import IconContact from "@/components/Icons/IconContact";
 import IconHome from "@/components/Icons/IconHome";
 import IconProjects from "@/components/Icons/IconProjects";
+import IconService from "@/components/Icons/IconService";
 import IconUser from "@/components/Icons/IconUser";
 import classes from "./index.module.css";
 
-const IconService = dynamic(() => import("@/components/Icons/IconService"), { ssr: false });
-
 export default function Sidenav() {
   const t = useTranslations("Sidebar");
-
-  const menus = [
+  const pathname = usePathname();
+  const activeLink = pathname.split("/")[2] || "";
+  const lang = pathname.split("/")[1] || "";
+  const [menus, setMenus] = useState([
     {
       label: t("Home"),
       icon: <IconHome size={20} />,
@@ -54,10 +55,13 @@ export default function Sidenav() {
       href: "/contact",
       key: "contact",
     },
-  ];
+  ]);
 
-  const pathname = usePathname();
-  const activeLink = pathname.split("/")[2] || "";
+  useEffect(() => {
+    setMenus(menus);
+    // console.log("Active Link:", activeLink);
+  }, [lang]);
+
   return (
     <Flex direction="column" gap="xs">
       {menus.map((menu) => {

@@ -96,7 +96,7 @@ const theme: MantineThemeOverride = {
       }),
     }),
   },
-  primaryColor: "tasman",
+  primaryColor: "indigo",
   primaryShade: { light: 5, dark: 8 },
   colors: {
     almond: [
@@ -148,6 +148,18 @@ const theme: MantineThemeOverride = {
       "#656142",
     ],
     ash: ["#f6f7eb", "#eaeae1", "#d2d2c7", "#c2c2b4", "#a5a591", "#979781", "#919177", "#7d7d65", "#6f6f57", "#606046"],
+    "ocean-blue": [
+      "#7AD1DD",
+      "#5FCCDB",
+      "#44CADC",
+      "#2AC9DE",
+      "#1AC2D9",
+      "#11B7CD",
+      "#09ADC3",
+      "#0E99AC",
+      "#128797",
+      "#147885",
+    ],
   },
   other: {
     ...customColors,

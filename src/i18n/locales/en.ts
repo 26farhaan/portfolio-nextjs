@@ -1,6 +1,6 @@
 import { title } from "process";
 import { all } from "axios";
-import { desc } from "motion/react-client";
+import { code, desc, header } from "motion/react-client";
 
 import Projects from "@/app/[locale]/(overview)/projects/page";
 
@@ -97,9 +97,52 @@ const en = {
     },
   },
   Services: {
-    title: "I build responsive, modern, and SEO-friendly websites, with an average Lighthouse score of over 90%.",
+    title1: "I build",
+    titleBold: "responsive, modern, and SEO-friendly",
+    title2: "websites",
     description:
       "focus on high performance and security, modern but lightweight and of course clean code and easy to maintain",
+    header: {
+      hire: "Hire me",
+      title: "Outcomes You Can Expect",
+      description: "Examples of results you can expect.",
+      loadtime: "Loadtime under 2 seconds",
+      delivery: "On-time delivery and clear communication",
+      performance: "Good performance, SEO support, and responsiveness",
+      code: "Clean code, modern design, and easy to maintain",
+    },
+    ido: {
+      service: "Service",
+      title: "What I Do",
+      jsDev: {
+        title: "Javascript Development",
+        description: "Building web applications using various JavaScript libraries and frameworks.",
+        item1: "Support SEO",
+        item2: "Lighthouse score > 90",
+        item3: "Responsive all screen sizes",
+      },
+      figma: {
+        title: "Figma → React.js/Next.js/Mantine/Tailwind",
+        description: "Converting Figma designs to React components and easy to maintain.",
+        item1: "Reusable components",
+        item2: "A11y & semantic",
+        item3: "Ready dark mode",
+      },
+      integration: {
+        title: "Integration API & Data",
+        description: "Integrating REST API or GraphQL and database to web applications.",
+        item1: "Axios, Fetch, SWR, React Query",
+        item2: "Handling Errors state & Loading state",
+        item3: "Form validation. Authentication JWT, & OAuth",
+      },
+      performance: {
+        title: "Performance and UX Optimization",
+        description: "Improving website performance and user experience through optimization techniques.",
+        item1: "Micro Animations",
+        item2: "SSR, SSG, ISR, and CSR",
+        item3: "Code Splitting ,Lazy Loading and Image Optimization",
+      },
+    },
   },
   Sidebar: {
     Home: "Home",

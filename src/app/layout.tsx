@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 import classes from "./layout.module.css";
 import MantineProgressHandler from "./MantineProgressHandler";
@@ -15,15 +16,16 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
+  const locale = await getLocale(); // ← dari next-intl (server)
   return (
     <>
-      <html className={classes.html} {...mantineHtmlProps} suppressHydrationWarning>
+      <html {...mantineHtmlProps} suppressHydrationWarning lang={locale || "id"}>
         <head>
           <ColorSchemeScript defaultColorScheme="auto" />
           <link rel="shortcut icon" href="./favicon.svg" />
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         </head>
-        <body>
+        <body className={classes.body}>
           <div>
             <Analytics />
             <CombinedProviders>

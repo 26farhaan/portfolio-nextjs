@@ -93,10 +93,52 @@ const id: DefaultLangType = {
     },
   },
   Services: {
-    title:
-      "Saya membangun website yang responsif, modern, dan ramah SEO, dengan skor Lighthouse rata-rata di atas 90%.",
+    title1: "Saya membangun website yang",
+    titleBold: "responsif, modern, dan ramah SEO",
+    title2: "",
     description:
       "fokus pada kinerja tinggi dan keamanan, modern tetapi ringan dan tentu saja kode yang bersih dan mudah untuk dipelihara",
+    header: {
+      hire: "Rekrut Saya",
+      title: "Hasil yang Dapat Anda Harapkan",
+      description: "Contoh implementasi nyata dari pengembangan front-end",
+      loadtime: "Loadtime di bawah 2 detik",
+      delivery: "Pengiriman tepat waktu dan komunikasi yang jelas",
+      performance: "Performa yang baik, Support SEO, dan responsif",
+      code: "Kode bersih, modern, dan mudah untuk dipelihara",
+    },
+    ido: {
+      service: "Layanan",
+      title: "Apa yang saya lakukan",
+      jsDev: {
+        title: "Javascript Developer",
+        description: "Membangun aplikasi web menggunakan berbagai pustaka dan kerangka kerja JavaScript.",
+        item1: "Support SEO",
+        item2: "Skor lighthouse > 90",
+        item3: "Responsive disemua ukuran layar",
+      },
+      figma: {
+        title: "Figma → React.js/Next.js/Mantine/Tailwind",
+        description: "Mengonversi desain Figma menjadi komponen React dan mudah untuk dipelihara.",
+        item1: "Komponen reusable",
+        item2: "A11y & semantics",
+        item3: "Siap mode terang dan gelap",
+      },
+      integration: {
+        title: "Integrasi API & Data",
+        description: "Mengintegrasikan REST API atau GraphQL dan database ke aplikasi web.",
+        item1: "Axios, Fetch, SWR, React Query",
+        item2: "Menangani state Error & Loading",
+        item3: "Validasi form. Autentikasi JWT, & OAuth",
+      },
+      performance: {
+        title: "Optimasi Kinerja",
+        description: "Meningkatkan kecepatan dan efisiensi aplikasi web.",
+        item1: "Mikro animasi",
+        item2: "SSR, SSG, ISR, dan CSR",
+        item3: "Code Splitting ,Lazy Loading dan Optimasi Gambar",
+      },
+    },
   },
   Sidebar: {
     Home: "Beranda",
