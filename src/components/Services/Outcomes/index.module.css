@@ -1,0 +1,5 @@
+.wrapper {
+  height: 100%;
+  padding: var(--mantine-spacing-md);
+  border-radius: var(--mantine-radius-md);
+}
