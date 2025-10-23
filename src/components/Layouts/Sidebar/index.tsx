@@ -1,5 +1,6 @@
 import { Anchor, Avatar, Box, Divider, Flex, Text } from "@mantine/core";
 
+import styles from "@/styles/global.module.css";
 import LangSwitch from "../LangSwitch";
 import Sidenav from "../Sidenav";
 import ThemeSwitch from "../ThemeSwitch";
@@ -26,7 +27,13 @@ export default function Sidebar() {
       <Box className={classes.copyRight}>
         <Divider my="md" />
         <Flex justify="center">
-          <Anchor fz="sm" href="https://www.satriabahari.my.id" target="_blank" rel="noopener noreferrer">
+          <Anchor
+            className={styles.caption}
+            fz="sm"
+            href="https://www.satriabahari.my.id"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             COPYRIGHT © 2025 Satria Bahari. All rights reserved.
           </Anchor>
         </Flex>

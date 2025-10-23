@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Text } from "@mantine/core";
 import * as motion from "motion/react-client";
 
 import classes from "./index.module.css";
 
 export default function LangSwitch() {
-  const router = useRouter();
   const pathname = usePathname();
   const lang = pathname.split("/")[1];
 
@@ -17,8 +16,9 @@ export default function LangSwitch() {
   const toggleSwitch = () => {
     const currentPath = pathname.split("/")[2];
     const newLocale = lang === "id" ? "en" : "id";
-    router.push(`/${newLocale}/${currentPath || ""}`);
+    const route = `/${newLocale}/${currentPath || ""}`;
     setIsOn(!isOn);
+    window.location.href = route;
   };
 
   return (

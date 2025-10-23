@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Flex, NavLink } from "@mantine/core";
 import { useTranslations } from "next-intl";
@@ -15,10 +14,8 @@ import classes from "./index.module.css";
 
 export default function Sidenav() {
   const t = useTranslations("Sidebar");
-  const pathname = usePathname();
-  const activeLink = pathname.split("/")[2] || "";
-  const lang = pathname.split("/")[1] || "";
-  const [menus, setMenus] = useState([
+
+  const menus = [
     {
       label: t("Home"),
       icon: <IconHome size={20} />,
@@ -55,13 +52,10 @@ export default function Sidenav() {
       href: "/contact",
       key: "contact",
     },
-  ]);
+  ];
 
-  useEffect(() => {
-    setMenus(menus);
-    // console.log("Active Link:", activeLink);
-  }, [lang]);
-
+  const pathname = usePathname();
+  const activeLink = pathname.split("/")[2] || "";
   return (
     <Flex direction="column" gap="xs">
       {menus.map((menu) => {
