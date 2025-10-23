@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Anchor, Avatar, Box, Divider, Flex, Text } from "@mantine/core";
 
 import styles from "@/styles/global.module.css";
@@ -10,7 +11,16 @@ export default function Sidebar() {
   return (
     <Flex direction="column" pos="sticky" top={0} p="md" className={classes.rootSidebar}>
       <Flex align="center" direction="column">
-        <Avatar alt="Mohamad Farhan Profile" variant="filled" size={140} src="/images/profile-1.jpg" />
+        <Box className={classes.avatarWrapper}>
+          <Avatar alt="Mohamad Farhan Profile" variant="filled" size={140} src="/images/profile-1.jpg" />
+          <Image
+            className={classes.openToWork}
+            src="/images/opentowork.png"
+            alt="Mohamad Farhan Profile"
+            width={140}
+            height={140}
+          />
+        </Box>
         <Text fz={24} mt={12} fw={500}>
           Mohamad Farhan
         </Text>

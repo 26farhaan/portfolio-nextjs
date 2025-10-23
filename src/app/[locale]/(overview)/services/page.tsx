@@ -28,9 +28,9 @@ export default async function ServicesPage() {
           <Text fz="sm" className={gStyles.caption}>
             {t("description")}
           </Text>
-          <Button size="xs" variant="outline" mt="md">
+          {/* <Button size="xs" variant="outline" mt="md">
             {t("header.hire")}
-          </Button>
+          </Button> */}
           <Group mt="md" gap="sm">
             <Badge variant="outline">Javascript</Badge>
             <Badge variant="outline">Typescript</Badge>

@@ -3,10 +3,19 @@
   height: 100%;
 }
 
+.avatarWrapper {
+  position: relative;
+}
+
 .usename {
   color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-6));
 }
 
 .copyRight {
   margin-top: auto;
+}
+
+.openToWork {
+  position: absolute;
+  bottom: 0;
 }
