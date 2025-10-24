@@ -5,13 +5,13 @@ import { getTranslations } from "next-intl/server";
 import Features from "@/components/Home/Features";
 import Skills from "@/components/Home/Skills";
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Home",
-    default: "Mohamad Farhan | Home",
-  },
-  description: `Home page mohamad farhan's portfolio`,
-};
+// export const metadata: Metadata = {
+//   title: {
+//     template: "%s | Home",
+//     default: "Mohamad Farhan | Home",
+//   },
+//   description: `Home page mohamad farhan's portfolio`,
+// };
 
 export default async function Home() {
   const t = await getTranslations("HomePage");

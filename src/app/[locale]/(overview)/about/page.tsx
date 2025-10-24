@@ -5,14 +5,12 @@ import Careers from "@/components/About/Careers";
 import CareersSkeleton from "@/components/About/Careers/skeleton";
 import Education from "@/components/About/Education";
 import Introduction from "@/components/About/Introduction";
+import { meta } from "@/i18n/locales/meta";
+import { getLocalizedMetadata } from "@/utils/metadata";
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | About",
-    default: "Mohamad Farhan | About",
-  },
-  description: `About page mohamad farhan's portfolio`,
-};
+export async function generateMetadata({ params }: { params: { locale: keyof typeof meta } }): Promise<Metadata> {
+  return getLocalizedMetadata(params.locale, "about");
+}
 
 export default async function AboutPage({ params }: { params: { locale: string; slug: string } }) {
   const { locale } = await params;
