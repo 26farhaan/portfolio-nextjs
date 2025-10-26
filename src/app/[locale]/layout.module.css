@@ -8,6 +8,7 @@
 
 .childWrapper {
   padding: var(--mantine-spacing-md);
+  margin-bottom: 200px;
 }
 
 .mainShell {
