@@ -15,7 +15,6 @@ import {
   Text,
   Tooltip,
 } from "@mantine/core";
-import dayjs from "dayjs";
 import { getTranslations } from "next-intl/server";
 
 import IconCareer from "@/components/Icons/IconCareer";
@@ -23,6 +22,7 @@ import CardShowCase from "@/components/UI/CardShowCase";
 import HeaderSection from "@/components/UI/HeaderSection";
 import { enumSKILLS } from "@/constants/skills";
 import { listCareers } from "@/queries/careers";
+import getYearMonthDuration from "@/utils/getYearMonthDuration";
 import classes from "./index.module.css";
 
 type CareersProops = {
@@ -30,10 +30,7 @@ type CareersProops = {
 };
 export default async function Careers({ locale }: CareersProops) {
   const t = await getTranslations("About.career");
-  const tGlobal = await getTranslations();
   const careers = await listCareers();
-  const now = dayjs();
-
   return (
     <section>
       <Box my="lg">
@@ -87,8 +84,7 @@ export default async function Careers({ locale }: CareersProops) {
                           {item.startDate} - {item.endDate}
                         </Text>
                         <Text fz="xs" className={classes.caption}>
-                          {now.diff(dayjs(item.startDate), "year")} {tGlobal("years")}{" "}
-                          {now.diff(dayjs(item.startDate), "month") % 12} {tGlobal("months")}
+                          {getYearMonthDuration({ startDate: item.sDate, endDate: item.eDate })}
                         </Text>
                       </Flex>
                     </Box>

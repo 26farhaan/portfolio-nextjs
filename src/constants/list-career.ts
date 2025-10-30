@@ -11,6 +11,8 @@ export type LISTCAREERType = {
   location: string;
   startDate: string;
   endDate: string;
+  sDate: string;
+  eDate: string;
   responsibilities: {
     [locale: string]: {
       description: string;
@@ -33,6 +35,8 @@ const LISTCAREER: LISTCAREERType[] = [
     location: "Jakarta, Indonesia (Remote)",
     startDate: "Des 2021",
     endDate: "Jun 2025",
+    sDate: "2021-12-01",
+    eDate: "2025-06-30",
     responsibilities: {
       id: {
         description:
@@ -86,6 +90,8 @@ const LISTCAREER: LISTCAREERType[] = [
     location: "Bandung, Indonesia (Remote)",
     startDate: "Jan 2022",
     endDate: "Apr 2025",
+    sDate: "2022-01-01",
+    eDate: "2025-04-30",
     responsibilities: {
       id: {
         description:
@@ -147,6 +153,8 @@ const LISTCAREER: LISTCAREERType[] = [
     location: "Jakarta, Indonesia (Hybrid)",
     startDate: "Des 2020",
     endDate: "Des 2021",
+    sDate: "2020-12-01",
+    eDate: "2021-12-31",
     responsibilities: {
       id: {
         description:
@@ -187,6 +195,8 @@ const LISTCAREER: LISTCAREERType[] = [
     location: "Bogor, Indonesia (Remote)",
     startDate: "Jun 2020",
     endDate: "Okt 2020",
+    sDate: "2020-06-01",
+    eDate: "2020-10-31",
     responsibilities: {
       id: {
         description:

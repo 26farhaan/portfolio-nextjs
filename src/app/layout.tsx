@@ -13,7 +13,7 @@ import MantineProgressHandler from "./MantineProgressHandler";
 import CombinedProviders from "./Providers";
 
 export async function generateMetadata({ params }: { params: { locale: keyof typeof meta } }): Promise<Metadata> {
-  return getLocalizedMetadata(params.locale, "home");
+  return await getLocalizedMetadata(params.locale, "home");
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
