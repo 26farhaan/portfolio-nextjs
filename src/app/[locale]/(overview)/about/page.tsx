@@ -9,7 +9,8 @@ import { meta } from "@/i18n/locales/meta";
 import { getLocalizedMetadata } from "@/utils/metadata";
 
 export async function generateMetadata({ params }: { params: { locale: keyof typeof meta } }): Promise<Metadata> {
-  return await getLocalizedMetadata(params.locale, "about");
+  const { locale } = await params;
+  return await getLocalizedMetadata(locale, "about");
 }
 
 export default async function AboutPage({ params }: { params: { locale: string; slug: string } }) {
