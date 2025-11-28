@@ -18,9 +18,7 @@ export default async function AboutPage({ params }: { params: { locale: string; 
   return (
     <>
       <Introduction />
-      <Suspense fallback={<CareersSkeleton />}>
-        <Careers locale={locale} />
-      </Suspense>
+      <Careers locale={locale} />
       <Education />
     </>
   );

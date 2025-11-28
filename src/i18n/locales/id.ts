@@ -148,7 +148,9 @@ const id: DefaultLangType = {
     Contact: "Kontak",
     Services: "Layanan",
   },
+  year: "Tahun",
   years: "Tahun",
+  month: "Bulan",
   months: "Bulan",
   all: "Semua",
 };

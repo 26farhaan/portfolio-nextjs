@@ -1,14 +1,22 @@
+// utils/getYearMonthDurationBase.ts
 import dayjs from "dayjs";
-import { getTranslations } from "next-intl/server";
 
-export default async function getYearMonthDuration({
+export type YMDLabel = {
+  year: string;
+  years: string;
+  month: string;
+  months: string;
+};
+
+export default function getYearMonthDurationBase({
   startDate,
   endDate,
+  labels,
 }: {
   startDate: string;
   endDate: string;
-}): Promise<string> {
-  const tGlobal = await getTranslations();
+  labels: YMDLabel;
+}): string {
   const start = dayjs(startDate);
   const end = dayjs(endDate);
 
@@ -16,13 +24,12 @@ export default async function getYearMonthDuration({
   const years = Math.floor(totalMonths / 12);
   const months = totalMonths % 12;
 
-  const result = [];
+  const result: string[] = [];
 
-  if (years > 0) result.push(`${years} ${tGlobal("years")}`);
-  if (months > 0) result.push(`${months} ${tGlobal("months")}`);
+  if (years > 0) result.push(`${years} ${years > 1 ? labels.years : labels.year}`);
+  if (months > 0) result.push(`${months} ${months > 1 ? labels.months : labels.month}`);
 
-  // Jika sama persis (0 tahun 0 bulan)
-  if (result.length === 0) result.push(`0 ${tGlobal("months")}`);
+  if (result.length === 0) result.push(`0 ${labels.months}`);
 
   return result.join(" ");
 }

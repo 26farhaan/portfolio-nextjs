@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   Accordion,
@@ -15,11 +18,12 @@ import {
   Text,
   Tooltip,
 } from "@mantine/core";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 import IconCareer from "@/components/Icons/IconCareer";
 import CardShowCase from "@/components/UI/CardShowCase";
 import HeaderSection from "@/components/UI/HeaderSection";
+import { LISTCAREERType } from "@/constants/list-career";
 import { enumSKILLS } from "@/constants/skills";
 import { listCareers } from "@/queries/careers";
 import getYearMonthDuration from "@/utils/getYearMonthDuration";
@@ -28,9 +32,19 @@ import classes from "./index.module.css";
 type CareersProops = {
   locale: string;
 };
-export default async function Careers({ locale }: CareersProops) {
-  const t = await getTranslations("About.career");
-  const careers = await listCareers();
+export default function Careers({ locale }: CareersProops) {
+  const t = useTranslations("About.career");
+  const tGlobal = useTranslations("");
+  const [careers, setCarreers] = useState<LISTCAREERType[]>([]);
+
+  useEffect(() => {
+    const fetchCareers = async () => {
+      const data = await listCareers();
+      setCarreers(data);
+    };
+    fetchCareers();
+  }, []);
+
   return (
     <section>
       <Box my="lg">
@@ -84,7 +98,16 @@ export default async function Careers({ locale }: CareersProops) {
                           {item.startDate} - {item.endDate}
                         </Text>
                         <Text fz="xs" className={classes.caption}>
-                          {getYearMonthDuration({ startDate: item.sDate, endDate: item.eDate })}
+                          {getYearMonthDuration({
+                            startDate: item.sDate,
+                            endDate: item.eDate,
+                            labels: {
+                              year: tGlobal("year"),
+                              years: tGlobal("years"),
+                              month: tGlobal("month"),
+                              months: tGlobal("months"),
+                            },
+                          })}
                         </Text>
                       </Flex>
                     </Box>

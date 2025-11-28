@@ -153,6 +153,8 @@ const en = {
     Services: "Services",
   },
   years: "Years",
+  year: "Year",
+  month: "Month",
   months: "Months",
   all: "All",
 };

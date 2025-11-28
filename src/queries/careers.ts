@@ -1,8 +1,6 @@
 // lib/careers.ts
 import LISTCAREER, { LISTCAREERType } from "@/constants/list-career";
 
-import "server-only";
-
 export type Career = {
   id: number;
   company: string;
