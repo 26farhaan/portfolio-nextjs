@@ -21,14 +21,14 @@ export default function Sidebar() {
             height={140}
           />
         </Box>
-        <Text fz={24} mt={12} fw={500}>
+        <Text fz={24} mt={16} fw={600}>
           Mohamad Farhan
         </Text>
         <Text fz="sm" className={classes.usename}>
           @26farhaan
         </Text>
       </Flex>
-      <Flex mt="sm" align="center" justify="center" gap="md">
+      <Flex mt="md" align="center" justify="center" gap="md">
         <ThemeSwitch />
         <LangSwitch />
       </Flex>

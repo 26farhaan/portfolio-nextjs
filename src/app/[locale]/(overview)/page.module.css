@@ -1,0 +1,111 @@
+.heroSection {
+  position: relative;
+  padding: var(--mantine-spacing-xl) 0;
+}
+
+.nameGradient {
+  /* pakai longhand background-image: shorthand `background` akan me-reset
+     background-clip saat postcss-preset-mantine memecah light-dark() */
+  background-image: linear-gradient(
+    90deg,
+    light-dark(var(--mantine-color-indigo-6), var(--mantine-color-indigo-3)) 0%,
+    light-dark(var(--mantine-color-violet-6), var(--mantine-color-violet-3)) 30%,
+    light-dark(var(--mantine-color-pink-6), var(--mantine-color-pink-3)) 55%,
+    light-dark(var(--mantine-color-violet-6), var(--mantine-color-violet-3)) 80%,
+    light-dark(var(--mantine-color-indigo-6), var(--mantine-color-indigo-3)) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.infoBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: light-dark(
+    linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.08)),
+    linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(168, 85, 247, 0.14))
+  );
+  border: 1px solid light-dark(rgba(99, 102, 241, 0.22), rgba(139, 143, 255, 0.3));
+  box-shadow: inset 0 1px 0 light-dark(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.06));
+  color: light-dark(var(--mantine-color-indigo-7), var(--mantine-color-indigo-2));
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+}
+
+.introText {
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-4));
+  line-height: 1.8;
+  max-width: 680px;
+}
+
+.sectionDivider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    light-dark(rgba(99, 102, 241, 0.25), rgba(139, 143, 255, 0.3)) 30%,
+    light-dark(rgba(168, 85, 247, 0.25), rgba(196, 141, 255, 0.3)) 70%,
+    transparent 100%
+  );
+  border: none;
+}
+
+.decorativeOrb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: light-dark(0.35, 0.45);
+  pointer-events: none;
+  z-index: -1;
+  animation: orbFloat 14s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-16px, 14px) scale(1.08);
+  }
+}
+
+.orb1 {
+  width: 220px;
+  height: 220px;
+  background: light-dark(var(--mantine-color-indigo-4), var(--mantine-color-indigo-7));
+  top: -50px;
+  right: -50px;
+}
+
+.orb2 {
+  width: 170px;
+  height: 170px;
+  background: light-dark(var(--mantine-color-violet-4), var(--mantine-color-violet-7));
+  bottom: 50px;
+  left: -30px;
+  animation-delay: -7s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nameGradient,
+  .decorativeOrb {
+    animation: none;
+  }
+}

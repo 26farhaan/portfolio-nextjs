@@ -8,7 +8,7 @@ import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { mantinetheme } from "../../mantine.theme";
+import { mantinetheme, resolver } from "../../mantine.theme";
 import MantineProgressHandler from "./MantineProgressHandler";
 // CSS Mantine dan style lain idealnya diimport SEKALI di root
 import "@mantine/core/styles.css";
@@ -52,7 +52,7 @@ export default function CombinedProviders({ children }: { children: ReactNode })
   const queryClient = getQueryClient();
 
   return (
-    <MantineProvider defaultColorScheme="auto" theme={mantinetheme}>
+    <MantineProvider defaultColorScheme="auto" theme={mantinetheme} cssVariablesResolver={resolver}>
       <QueryClientProvider client={queryClient}>
         <Notifications />
         <MantineProgressHandler />

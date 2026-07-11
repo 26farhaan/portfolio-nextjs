@@ -1,5 +1,21 @@
 .root {
   height: 100vh;
+  background: radial-gradient(
+      ellipse 80% 55% at 15% -10%,
+      light-dark(rgba(99, 102, 241, 0.12), rgba(99, 102, 241, 0.18)),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 65% 45% at 95% 15%,
+      light-dark(rgba(168, 85, 247, 0.09), rgba(168, 85, 247, 0.14)),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 60% 115%,
+      light-dark(rgba(34, 211, 238, 0.07), rgba(34, 211, 238, 0.09)),
+      transparent 60%
+    ),
+    light-dark(linear-gradient(180deg, #fbfcff 0%, #edf0fb 100%), linear-gradient(180deg, #0f1020 0%, #15162a 100%));
 }
 
 .sidebarWrapper {
@@ -7,7 +23,7 @@
 }
 
 .childWrapper {
-  padding: var(--mantine-spacing-md);
+  padding: var(--mantine-spacing-lg);
   margin-bottom: 200px;
 }
 
@@ -15,24 +31,49 @@
   overflow: scroll;
   max-height: 100vh;
   overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-5)) transparent;
+}
+
+.mainShell::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mainShell::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mainShell::-webkit-scrollbar-thumb {
+  background-color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-5));
+  border-radius: 20px;
+}
+
+.mainShell::-webkit-scrollbar-thumb:hover {
+  background-color: light-dark(var(--mantine-color-gray-5), var(--mantine-color-dark-4));
 }
 
 .headerShell {
-  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-9));
+  background-color: light-dark(rgba(251, 252, 255, 0.8), rgba(15, 16, 32, 0.75));
+  backdrop-filter: blur(12px);
   z-index: 10;
   transition:
     background-color 0.3s ease,
-    backdrop-filter 0.3s ease;
+    backdrop-filter 0.3s ease,
+    box-shadow 0.3s ease;
+  border-bottom: 1px solid light-dark(rgba(99, 102, 241, 0.08), rgba(139, 143, 255, 0.08));
 }
 
 .headerShellScrolled {
-  background: light-dark(rgba(209, 209, 209, 0.2), rgba(14, 14, 14, 0.2)) !important;
-  backdrop-filter: blur(10px);
-  /* background-color: red !important; */
+  background: light-dark(rgba(251, 252, 255, 0.6), rgba(15, 16, 32, 0.6)) !important;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 2px 12px light-dark(rgba(76, 81, 191, 0.1), rgba(0, 0, 0, 0.35));
 }
 
 .navbar {
-  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9));
+  background: light-dark(rgba(251, 252, 255, 0.92), rgba(17, 18, 34, 0.92));
+  backdrop-filter: blur(12px);
+  border-right: 1px solid light-dark(rgba(99, 102, 241, 0.1), rgba(139, 143, 255, 0.09));
+  box-shadow: 4px 0 24px light-dark(rgba(76, 81, 191, 0.05), rgba(0, 0, 0, 0.25));
 }
 
 .switchWrapMob {

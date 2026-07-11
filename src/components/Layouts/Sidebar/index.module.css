@@ -1,14 +1,25 @@
 .rootSidebar {
   overflow: auto;
   height: 100%;
+  gap: 4px;
 }
 
 .avatarWrapper {
   position: relative;
+  padding: 8px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--mantine-color-indigo-4),
+    var(--mantine-color-violet-4) 55%,
+    var(--mantine-color-pink-4)
+  );
+  box-shadow: 0 4px 24px light-dark(rgba(99, 102, 241, 0.3), rgba(139, 143, 255, 0.28));
 }
 
 .usename {
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-6));
+  color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-gray-5));
+  letter-spacing: 0.5px;
 }
 
 .copyRight {

@@ -17,6 +17,10 @@ import {
   TableTr,
 } from "@mantine/core";
 
+/* =======================
+   Utils
+======================= */
+
 function parseDenom(x: string | number) {
   if (typeof x === "number") return x;
   const s = String(x).trim().toLowerCase();
@@ -26,39 +30,18 @@ function parseDenom(x: string | number) {
 }
 
 function finalChance(denom: string | number, luckPercent: number) {
-  const p = 1 / parseDenom(denom); // base chance = 1 / denom
-  const m = 1 + luckPercent / 100; // luckPercent dalam %, misal 1944 = 19.44x
-  return Math.min(1, p * m); // clamp ke max 100%
+  const p = 1 / parseDenom(denom); // base chance
+  const m = 1 + luckPercent / 100; // luck multiplier
+  return Math.min(1, p * m); // clamp max 100%
 }
 
-// Roll satu ikan, dicek dari paling langka → paling umum.
-// Kalau semua gagal, fallback ke ikan dengan denom paling rendah (paling mudah).
-function rollFishByRarity(items: { name: string; denom: string | number }[], luckPercent: number, rng = Math.random) {
-  // sort: denom besar → kecil (4m → 2m → 50k → 5k → 45k → dst)
-  const sorted = [...items].sort((a, b) => parseDenom(b.denom) - parseDenom(a.denom));
+/* =======================
+   Types & Data
+======================= */
 
-  for (const it of sorted) {
-    const chance = finalChance(it.denom, luckPercent);
-    const roll = rng();
-    if (roll < chance) return it.name;
-  }
+type Rarity = "Uncommon" | "Rare" | "Epic" | "Legendary" | "Mythic" | "Secret";
 
-  // semua gagal → paksa dapat ikan dengan denom paling kecil (paling umum)
-  const lowestDenomFish = sorted[sorted.length - 1];
-  return lowestDenomFish.name;
-}
-
-function getRarity(name: string) {
-  const lower = name.toLowerCase();
-  if (lower.includes("secret")) return "Secret";
-  if (lower.includes("mythic")) return "Mythic";
-  if (lower.includes("legendary")) return "Legendary";
-  if (lower.includes("epic")) return "Epic";
-  if (lower.includes("rare")) return "Rare";
-  return "Uncommon";
-}
-
-const rarityOrder: Record<string, number> = {
+const rarityOrder: Record<Rarity, number> = {
   Uncommon: 1,
   Rare: 2,
   Epic: 3,
@@ -67,74 +50,92 @@ const rarityOrder: Record<string, number> = {
   Secret: 6,
 };
 
-function multiRollWithSorting(items: { name: string; denom: string | number }[], luckPercent: number, times: number) {
+const fishes: {
+  name: string;
+  denom: string | number;
+  rarity: Rarity;
+}[] = [
+  { name: "Secret 1 (1/2m)", denom: "2m", rarity: "Secret" },
+  { name: "Secret 2 (1/4m)", denom: "4m", rarity: "Secret" },
+
+  { name: "Mythic (1/50k)", denom: "50k", rarity: "Mythic" },
+
+  { name: "Legendary 1 (1/5k)", denom: "5k", rarity: "Legendary" },
+  { name: "Legendary 2 (1/5k)", denom: "5k", rarity: "Legendary" },
+  { name: "Legendary 3 (1/45k)", denom: "45k", rarity: "Legendary" },
+
+  { name: "Epic 1 (1/1k)", denom: "1k", rarity: "Epic" },
+  { name: "Epic 2 (1/1k)", denom: "1k", rarity: "Epic" },
+  { name: "Epic 3 (1/3k)", denom: "3k", rarity: "Epic" },
+
+  { name: "Rare 1 (1/300)", denom: 300, rarity: "Rare" },
+  { name: "Rare 2 (1/300)", denom: 300, rarity: "Rare" },
+  { name: "Rare 3 (1/300)", denom: 300, rarity: "Rare" },
+  { name: "Rare 4 (1/300)", denom: 300, rarity: "Rare" },
+  { name: "Rare 5 (1/300)", denom: 300, rarity: "Rare" },
+
+  { name: "Uncommon", denom: 50, rarity: "Uncommon" },
+];
+
+/* =======================
+   RNG Logic
+======================= */
+
+// Roll 1 ikan (cek dari paling langka → paling umum)
+function rollFishByRarity(items: { name: string; denom: string | number }[], luckPercent: number, rng = Math.random) {
+  const sorted = [...items].sort((a, b) => parseDenom(b.denom) - parseDenom(a.denom));
+
+  for (const it of sorted) {
+    const chance = finalChance(it.denom, luckPercent);
+    if (rng() < chance) return it.name;
+  }
+
+  // fallback ke ikan termudah
+  return sorted[sorted.length - 1].name;
+}
+
+function multiRollWithSorting(
+  items: { name: string; denom: string | number; rarity: Rarity }[],
+  luckPercent: number,
+  times: number
+) {
   const counter: Record<string, number> = {};
 
-  // init semua ikan → 0
-  for (const it of items) {
-    counter[it.name] = 0;
-  }
+  for (const it of items) counter[it.name] = 0;
 
-  // do rolls
   for (let i = 0; i < times; i++) {
     const result = rollFishByRarity(items, luckPercent);
-    console.log(`Roll ${i + 1}: ${result}`);
-    if (counter[result] !== undefined) {
-      counter[result]++;
-    }
+    counter[result]++;
   }
 
-  // convert ke array + sorting berdasarkan rarity dan denom
-  const resultArray = items
+  return items
     .map((it) => ({
       name: it.name,
       denom: it.denom,
+      rarity: it.rarity,
       count: counter[it.name],
-      rarity: getRarity(it.name),
     }))
     .sort((a, b) => {
-      const r1 = rarityOrder[a.rarity];
-      const r2 = rarityOrder[b.rarity];
-      if (r1 !== r2) return r2 - r1; // sort berdasarkan tier rarity
-      return parseDenom(a.denom) - parseDenom(b.denom); // rarity sama → denom kecil ke besar
-    });
+      const rDiff = rarityOrder[b.rarity] - rarityOrder[a.rarity];
+      if (rDiff !== 0) return rDiff;
 
-  return resultArray;
+      return parseDenom(a.denom) - parseDenom(b.denom);
+    });
 }
 
-const fishes = [
-  { name: "Secret 1 (1/2m)", denom: "2m" },
-  { name: "Secret 2 (1/4m)", denom: "4m" },
-  { name: "Mythic (1/50k)", denom: "50k" },
-  { name: "Legendary 1 (1/5k)", denom: "5k" },
-  { name: "Legendary 2 (1/5k)", denom: "5k" },
-  { name: "Legendary 3 (1/45k)", denom: "45k" },
-  { name: "Epic 1 (1/1k)", denom: "1k" },
-  { name: "Epic 2 (1/1k)", denom: "1k" },
-  { name: "Epic 3 (1/3k)", denom: "3k" },
-  { name: "Rare 1 (1/300)", denom: 300 },
-  { name: "Rare 2 (1/300)", denom: 300 },
-  { name: "Rare 3 (1/300)", denom: 300 },
-  { name: "Rare 4 (1/300)", denom: 300 },
-  { name: "Rare 5 (1/300)", denom: 300 },
-  { name: "Uncommon 1 (1/50)", denom: 50 },
-  { name: "Uncommon 2 (1/50)", denom: 50 },
-  { name: "Uncommon 3 (1/50)", denom: 50 },
-  { name: "Uncommon 4 (1/50)", denom: 50 },
-  { name: "Uncommon 5 (1/50)", denom: 50 },
-  { name: "Uncommon 6 (1/100)", denom: 100 },
-  { name: "Uncommon 7 (1/100)", denom: 150 },
-];
+/* =======================
+   Component
+======================= */
 
 export default function RNGFishItPage() {
-  const [result, setResult] = useState<any[]>([]);
-  const [bonusLuck, setBonusLuck] = useState<string | number>(0);
-  const [levelLuck, setLevelLuck] = useState<string | number>(0);
+  const [result, setResult] = useState<{ name: string; denom: string | number; rarity: Rarity; count: number }[]>([]);
+  const [bonusLuck, setBonusLuck] = useState<number>(0);
+  const [levelLuck, setLevelLuck] = useState<number>(0);
   const [sumRoll, setSumRoll] = useState<number>(0);
 
   const run = (roll: number) => {
-    setSumRoll((bef) => bef + roll);
-    const r = multiRollWithSorting(fishes, Number(bonusLuck), roll);
+    setSumRoll((prev) => prev + roll);
+    const r = multiRollWithSorting(fishes, Number(bonusLuck + levelLuck), roll);
     setResult(r);
   };
 
@@ -147,24 +148,29 @@ export default function RNGFishItPage() {
               <Group align="end" gap="md">
                 <NumberInput
                   thousandSeparator
-                  onChange={(val) => setBonusLuck(val || 0)}
                   label="Bonus Luck"
-                  placeholder="masukan bonus luck"
-                  maxLength={12}
+                  placeholder="Masukan bonus luck"
+                  onChange={(val) => setBonusLuck(+val || 0)}
                 />
+
                 <NumberInput
-                  onChange={(val) => setLevelLuck(val || 0)}
                   label="Level Luck"
-                  placeholder="masukan level luck"
+                  placeholder="Masukan level luck"
+                  onChange={(val) => setLevelLuck(+val || 0)}
                 />
+
                 <Button onClick={() => run(300)}>Roll 300x</Button>
-                <Button onClick={() => run(1000)}>Roll 1000x</Button>
-                <Button onClick={() => run(10000)}>Roll 10.000x</Button>
-                <Button onClick={() => run(100000)}>Roll 100.000x</Button>
-                <Button onClick={() => run(1000000)}>Roll 1.000.000x</Button>
+                <Button onClick={() => run(1_000)}>Roll 1.000x</Button>
+                <Button onClick={() => run(10_000)}>Roll 10.000x</Button>
+                <Button onClick={() => run(100_000)}>Roll 100.000x</Button>
+                <Button onClick={() => run(1_000_000)}>Roll 1.000.000x</Button>
               </Group>
-              <Box mt={16}>Total Roll: {sumRoll.toLocaleString()}</Box>
+
+              <Box mt={16}>
+                Total Roll: <b>{sumRoll.toLocaleString()}</b>
+              </Box>
             </GridCol>
+
             <GridCol span={8}>
               <Table>
                 <TableThead>
@@ -178,7 +184,7 @@ export default function RNGFishItPage() {
                 <TableTbody>
                   {result.map((it, idx) => (
                     <TableTr key={idx}>
-                      <TableTd c="red">{it.name}</TableTd>
+                      <TableTd>{it.name}</TableTd>
                       <TableTd>{it.denom}</TableTd>
                       <TableTd>{it.rarity}</TableTd>
                       <TableTd>{it.count}</TableTd>

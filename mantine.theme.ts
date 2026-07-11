@@ -184,9 +184,15 @@ export const resolver: CSSVariablesResolver = (context) => {
       ...colors,
     },
     // light theme
-    light: {},
+    light: {
+      "--mantine-color-body": "#fbfcff",
+      "--mantine-color-default-border": "rgba(99, 102, 241, 0.14)",
+    },
     // dark theme
-    dark: {},
+    dark: {
+      "--mantine-color-body": "#0f1020",
+      "--mantine-color-default-border": "rgba(139, 143, 255, 0.14)",
+    },
   };
 };
 
