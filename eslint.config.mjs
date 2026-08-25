@@ -1,34 +1,21 @@
 /* eslint.config.mjs */
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
-import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-import importPlugin from "eslint-plugin-import";
-import jsxA11y from "eslint-plugin-jsx-a11y";
+import { defineConfig, globalIgnores } from "eslint/config";
+import prettierConfig from "eslint-config-prettier/flat";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 import prettier from "eslint-plugin-prettier";
-import reactPlugin from "eslint-plugin-react";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// ---- Base configs (Next + TypeScript) ----
+// nextVitals sudah membawa plugin react, react-hooks, jsx-a11y, dan import.
+// nextTs sudah membawa parser + rules dari typescript-eslint recommended.
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-});
-
-// ---- Base configs (Next + Prettier) ----
-const eslintConfig = [
-  ...compat.extends("next", "next/core-web-vitals", "prettier"),
-
-  // ---- Global (JS/TS) rules & plugins ----
+  // ---- Global (JS/TS) rules ----
   {
     plugins: {
       prettier,
-      react: reactPlugin,
-      "jsx-a11y": jsxA11y,
-      import: importPlugin,
     },
     languageOptions: {
       ecmaVersion: "latest",
@@ -72,6 +59,12 @@ const eslintConfig = [
       "jsx-a11y/heading-has-content": "warn",
       "jsx-a11y/no-redundant-roles": "warn",
 
+      // --- Rule baru dari eslint-plugin-react-hooks v7 (dibawa eslint-config-next 16) ---
+      // TODO: turunkan ke "error" lagi setelah pola mount-guard/hidrasi dan
+      // useCallback(debounce(...)) di-refactor. Lihat catatan upgrade Next 16.
+      "react-hooks/set-state-in-effect": "warn",
+      "react-hooks/use-memo": "warn",
+
       // --- yang sebelumnya kamu set ---
       camelcase: "off",
       "import/prefer-default-export": "off",
@@ -84,15 +77,8 @@ const eslintConfig = [
   },
 
   // ---- TypeScript-only layer ----
-  ...compat.extends("plugin:@typescript-eslint/recommended", "prettier").map((config) => ({
-    ...config,
-    files: ["**/*.+(ts|tsx)"],
-  })),
-
   {
     files: ["**/*.+(ts|tsx)"],
-    plugins: { "@typescript-eslint": typescriptEslintPlugin },
-    languageOptions: { parser: tsParser },
     rules: {
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -103,6 +89,12 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     },
   },
-];
+
+  // ---- Prettier terakhir supaya rule formatting yang konflik dimatikan ----
+  prettierConfig,
+
+  // Override default ignores dari eslint-config-next.
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+]);
 
 export default eslintConfig;

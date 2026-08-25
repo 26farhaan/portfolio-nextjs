@@ -1,4 +1,4 @@
-// src/middleware.ts
+// src/proxy.ts
 import { NextRequest } from "next/server";
 import createMiddleware from "next-intl/middleware";
 
@@ -7,13 +7,13 @@ import { routing } from "./i18n/routing";
 // Middleware utama next-intl
 const intlMiddleware = createMiddleware(routing);
 
-export default function middleware(req: NextRequest) {
+export default function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // ✅ 1. Lewati file penting SEO
   const seoFiles = ["/sitemap.xml", "/robots.txt", "/favicon.ico"];
   if (seoFiles.includes(pathname)) {
-    return; // skip middleware (biar dilayani langsung oleh Next.js/public)
+    return; // skip proxy (biar dilayani langsung oleh Next.js/public)
   }
 
   // ✅ 2. Lewati file statis & aset

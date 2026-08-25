@@ -12,8 +12,10 @@ import classes from "./layout.module.css";
 import MantineProgressHandler from "./MantineProgressHandler";
 import CombinedProviders from "./Providers";
 
-export async function generateMetadata({ params }: { params: { locale: keyof typeof meta } }): Promise<Metadata> {
-  return await getLocalizedMetadata(params.locale, "home");
+export async function generateMetadata(): Promise<Metadata> {
+  // Root layout tidak punya segment [locale], jadi locale diambil dari next-intl
+  const locale = await getLocale();
+  return getLocalizedMetadata(locale as keyof typeof meta, "home");
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {

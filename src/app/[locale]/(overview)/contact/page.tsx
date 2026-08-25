@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: `Contact page mohamad farhan's portfolio`,
 };
 
-export default async function AboutPage({ params }: { params: { locale: string; slug: string } }) {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const t = await getTranslations("Contact");
   // const { locale } = await params;
   return (

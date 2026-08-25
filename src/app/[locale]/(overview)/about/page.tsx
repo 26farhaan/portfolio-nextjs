@@ -8,12 +8,16 @@ import Introduction from "@/components/About/Introduction";
 import { meta } from "@/i18n/locales/meta";
 import { getLocalizedMetadata } from "@/utils/metadata";
 
-export async function generateMetadata({ params }: { params: { locale: keyof typeof meta } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: keyof typeof meta }>;
+}): Promise<Metadata> {
   const { locale } = await params;
-  return await getLocalizedMetadata(locale, "about");
+  return getLocalizedMetadata(locale, "about");
 }
 
-export default async function AboutPage({ params }: { params: { locale: string; slug: string } }) {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale } = await params;
   return (
     <>
