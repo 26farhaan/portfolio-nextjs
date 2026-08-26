@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm lint *)",
+      "WebFetch(domain:registry.npmjs.org)",
+      "Bash(pnpm view *)",
+      "Bash(pnpm add *)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{const r=JSON.parse\\(d\\);const m={};r.forEach\\(f=>f.messages.forEach\\(x=>{const k=\\(x.severity===2?'ERR ':'WARN '\\)+x.ruleId;m[k]=\\(m[k]||0\\)+1}\\)\\);Object.entries\\(m\\).sort\\(\\(a,b\\)=>b[1]-a[1]\\).forEach\\(\\([k,v]\\)=>console.log\\(String\\(v\\).padStart\\(5\\),k\\)\\)}\\)\")",
+      "Bash(pnpm lint:fix)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{JSON.parse\\(d\\).forEach\\(f=>f.messages.filter\\(x=>x.severity===2\\).forEach\\(x=>console.log\\(f.filePath.split\\('portfolio-nextjs\\\\\\\\\\\\\\\\'\\)[1]+':'+x.line+':'+x.column+'  '+x.ruleId\\)\\)\\)}\\)\")",
+      "Bash(pnpm exec *)",
+      "Bash(node -e ' *)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm dev *)",
+      "Bash(tee /tmp/devlog.txt)",
+      "Read(//tmp/**)",
+      "Bash(git add *)",
+      "Bash(docker version *)",
+      "Bash(cp -r public .next/standalone/)",
+      "Bash(cp -r .next/static .next/standalone/.next/)",
+      "Bash(PORT=3001 HOSTNAME=0.0.0.0 node server.js)",
+      "Bash(tee /tmp/standalone.log)"
+    ]
+  }
+}

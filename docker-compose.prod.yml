@@ -1,0 +1,24 @@
+# File ini yang dipakai DI VPS. Tidak ada bagian `build:` — image ditarik dari
+# registry, jadi source code tidak perlu ada di VPS sama sekali.
+#
+# Yang perlu ada di VPS cuma 2 file: docker-compose.prod.yml dan .env
+#
+#   docker compose -f docker-compose.prod.yml pull
+#   docker compose -f docker-compose.prod.yml up -d
+services:
+  web:
+    image: ghcr.io/26farhaan/portfolio-nextjs:latest
+    container_name: portfolio-web
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      # Terbuka ke publik di port 3000 (HTTP polos, belum ada TLS).
+      # Setelah reverse proxy dipasang, ubah jadi "127.0.0.1:3000:3000".
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3

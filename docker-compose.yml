@@ -1,0 +1,20 @@
+# Dipakai di LOKAL untuk build + push image ke registry.
+# Untuk di VPS pakai docker-compose.prod.yml.
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Catatan: src/constants/env.ts belum diimport di mana pun, jadi ketiga
+        # nilai ini belum berefek. Biarkan saja sampai env.ts benar-benar dipakai.
+        NEXT_PUBLIC_APP_DOMAIN: https://mohamadfarhan.space/
+        NEXT_PUBLIC_APP_BASE_URL_API: https://mohamadfarhan.space
+        NEXT_PUBLIC_APP_ENV: production
+    image: ghcr.io/26farhaan/portfolio-nextjs:latest
+    container_name: portfolio-web
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:3000:3000"
