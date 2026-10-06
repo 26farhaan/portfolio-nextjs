@@ -4,7 +4,9 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   // Wajib untuk Docker: menghasilkan .next/standalone yang sudah berisi
   // node_modules seperlunya, jadi image tidak perlu install dependency lagi.
-  output: "standalone",
+  // Dimatikan di Vercel: build Vercel tidak menulis .next/next-server.js.nft.json
+  // yang dibutuhkan langkah standalone, sehingga build gagal (ENOENT).
+  output: process.env.VERCEL ? undefined : "standalone",
   experimental: {
     optimizePackageImports: [
       "@mantine/core",
