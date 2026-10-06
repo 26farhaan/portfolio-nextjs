@@ -13,9 +13,12 @@ services:
     env_file:
       - .env
     ports:
-      # Terbuka ke publik di port 3000 (HTTP polos, belum ada TLS).
-      # Setelah reverse proxy dipasang, ubah jadi "127.0.0.1:3000:3000".
-      - "3000:3000"
+      # Port 80 host -> 3000 container. Port 3000 diblokir Security Group
+      # Tencent Cloud, dan lewat 80 pengunjung tidak perlu mengetik :3000.
+      # Catatan: ini masih HTTP polos, belum ada TLS.
+      # Setelah reverse proxy dipasang, proxy yang mengambil port 80 dan
+      # baris ini dikembalikan jadi "127.0.0.1:3000:3000".
+      - "80:3000"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
       interval: 30s
