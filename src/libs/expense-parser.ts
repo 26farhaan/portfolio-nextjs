@@ -23,6 +23,8 @@ export interface ParsedItem {
   categoryId: number | null;
   /** voice/text: rekening yang disebut user ("pakai GoPay"), atau null. */
   accountId: number | null;
+  /** voice/text: jam yang disebut user, "HH:MM" 24 jam ("jam 7 pagi" → "07:00"), atau null (app pakai jam sekarang). */
+  time: string | null;
 }
 
 export interface ExpenseParseResult {
@@ -74,6 +76,13 @@ function cleanPrice(value: unknown): number {
   return Number.isFinite(n) && n > 0 ? Math.round(n) : 0;
 }
 
+/** Jam "7:05" / "07:05" (00:00–23:59) → "07:05"; format lain / di luar rentang → null. */
+function cleanTime(value: unknown): string | null {
+  const m = typeof value === "string" ? value.trim().match(/^(\d{1,2}):(\d{2})$/) : null;
+  if (!m || Number(m[1]) > 23 || Number(m[2]) > 59) return null;
+  return `${m[1].padStart(2, "0")}:${m[2]}`;
+}
+
 function normalizeItems(raw: unknown, categories: Option[], accounts: Option[]): ParsedItem[] {
   if (!Array.isArray(raw)) return [];
   return raw
@@ -88,6 +97,7 @@ function normalizeItems(raw: unknown, categories: Option[], accounts: Option[]):
         price,
         categoryId: validId(r.categoryId, categories),
         accountId: validId(r.accountId, accounts),
+        time: cleanTime(r.time),
       };
     })
     .filter((it): it is ParsedItem => it !== null);
@@ -156,7 +166,7 @@ function storyPrompt(type: "voice" | "text", categories: Option[], accounts: Opt
 pengeluaran user. Ekstrak SETIAP pengeluaran sebagai item TERPISAH — jangan dirangkum.
 
 Balas HANYA dengan JSON valid berbentuk:
-{"transcript": string|null, "items": [{"name": string, "price": number, "categoryId": number|null, "accountId": number|null}]}
+{"transcript": string|null, "items": [{"name": string, "price": number, "categoryId": number|null, "accountId": number|null, "time": string|null}]}
 
 Aturan:
 - "transcript": ${
@@ -173,6 +183,10 @@ Aturan:
 - "accountId": id rekening dari daftar di bawah HANYA jika user menyebut cara bayar/rekening
   untuk item itu (mis. "pakai GoPay", "dari BCA", "cash/tunai"); selain itu null.
   Jika cara bayar disebut sekali untuk beberapa item, berlakukan ke item-item tersebut.
+- "time": jam transaksi format 24 jam "HH:MM" HANYA jika user menyebut jam/waktu untuk item itu
+  (mis. "jam 7 pagi" = "07:00", "jam 2 siang" = "14:00", "jam 8 malam" = "20:00", "setengah 1 siang" = "12:30");
+  selain itu null. Jangan menebak dari kata umum seperti "tadi", "pagi", atau "siang" tanpa angka jam.
+  Jika jam disebut sekali untuk beberapa item, berlakukan ke item-item tersebut.
 - Jika tidak ada pengeluaran sama sekali, "items": [].
 
 Daftar kategori (id — nama):
